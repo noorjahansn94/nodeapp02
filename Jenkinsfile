@@ -5,7 +5,11 @@ pipeline {
     dockerImage = ""
   }
 
-  agent any
+  agent{
+    docker{
+        image 'docker:latest'
+    }
+  }
 
   stages {
 
@@ -19,10 +23,11 @@ pipeline {
     stage('Build image') {
       steps{
         script {
-         // dockerImage = docker.build dockerimagename
+        // docker.build dockerimagename+ ":$BUILD_NUMBER"
         // dockerImage = docker.build("dockerimagename:latest")
        // 
-        customImage = docker.build("my-imagesss:latest")
+       //docker.withDockerContainer('my-imagesss:latest')
+        dockerImage = docker.build("my-imagesss:latest")
         }
       }
     }
