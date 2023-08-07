@@ -22,7 +22,7 @@ pipeline {
          // dockerImage = docker.build dockerimagename
         // dockerImage = docker.build("dockerimagename:latest")
        // 
-        customImage = docker.build("my-image:latest")
+        customImage = docker.build("my-imagesss:latest")
         }
       }
     }
