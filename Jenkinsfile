@@ -22,7 +22,7 @@ pipeline {
          // dockerImage = docker.build dockerimagename
         // dockerImage = docker.build("dockerimagename:latest")
        // }
-       docker('Docker'){
+       dockerTool('Docker'){
         sh 'docker build -t dockerimagename:latest .'
        }
       }
