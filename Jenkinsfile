@@ -15,7 +15,7 @@ pipeline {
       git branch: 'main', url: 'https://github.com/noorjahansn94/nodeapp02.git'
       }
     }
-/*
+
     stage('Build image') {
       steps{
         script {
@@ -23,7 +23,7 @@ pipeline {
         }
       }
     }
-
+/*
     stage('Pushing Image') {
       environment {
                registryCredential = 'dockerhub-credentials'
