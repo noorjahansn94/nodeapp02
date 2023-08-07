@@ -18,10 +18,13 @@ pipeline {
 
     stage('Build image') {
       steps{
-        script {
+       // script {
          // dockerImage = docker.build dockerimagename
-         dockerImage = docker.build("dockerimagename:latest")
-        }
+        // dockerImage = docker.build("dockerimagename:latest")
+       // }
+       docker('Docker'){
+        sh 'docker build -t dockerimagename:latest .'
+       }
       }
     }
 /*
