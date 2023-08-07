@@ -11,7 +11,8 @@ pipeline {
 
     stage('Checkout Source') {
       steps {
-        git 'https://github.com/noorjahansn94/nodeapp02.git'
+      //  git 'https://github.com/noorjahansn94/nodeapp02.git'
+      git branch: 'main', url: 'https://github.com/noorjahansn94/nodeapp02.git'
       }
     }
 
