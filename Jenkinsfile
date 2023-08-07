@@ -5,11 +5,7 @@ pipeline {
     dockerImage = ""
   }
 
-  agent{
-    docker{
-        image 'docker:latest'
-    }
-  }
+  agent any
 
   stages {
 
