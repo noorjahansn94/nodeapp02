@@ -19,8 +19,9 @@ pipeline {
     stage('Build image') {
       steps{
         docker('docker') {
+            sh docker build -t my-imagesss:latest .
          //   dockerImage = docker.build dockerimagename
-         docker.build dockerimage+ ":$BUILD_NUMBER"
+         //docker.build dockerimage+ ":$BUILD_NUMBER"
         // dockerImage = docker.build("dockerimagename:latest")
        // 
        //docker.withDockerContainer('my-imagesss:latest')
