@@ -1,7 +1,7 @@
 pipeline {
 
   environment {
-    dockerimagename = "noorjahansn/nodejsapp"
+    dockerimagename = "noorjahansn/nodejsapps"
     dockerImage = ""
   }
 
@@ -19,11 +19,12 @@ pipeline {
     stage('Build image') {
       steps{
         script {
+            dockerImage = docker.build dockerimagename
         // docker.build dockerimagename+ ":$BUILD_NUMBER"
         // dockerImage = docker.build("dockerimagename:latest")
        // 
        //docker.withDockerContainer('my-imagesss:latest')
-        dockerImage = docker.build("my-imagesss:latest")
+       // dockerImage = docker.build("my-imagesss:latest")
         }
       }
     }
