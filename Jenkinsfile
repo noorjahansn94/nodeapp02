@@ -25,7 +25,7 @@ pipeline {
         // dockerImage = docker.build("dockerimagename:latest")
        // 
        //docker.withDockerContainer('my-imagesss:latest')
-        dockerImage = docker.build("my-imagesss:latest")
+        docker.build("my-imagesss:latest")
         }
       }
     }
