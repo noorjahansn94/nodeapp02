@@ -6,10 +6,14 @@ pipeline {
   }
  // agent any
   agent {
-    kubernetes {
-      label 'docker'
-      defaultContainer 'jnlp'
-    }
+    // kubernetes {
+    //   label 'docker'
+    //   defaultContainer 'jnlp'
+    // }
+    docker {
+            image 'docker:dind'
+            args '-v /var/run/docker.sock:/var/run/docker.sock'
+        }
   }
 
   stages {
