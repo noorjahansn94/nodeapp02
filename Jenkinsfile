@@ -6,10 +6,11 @@ pipeline {
   }
 
   agent {
-    docker {
-       image "jenkins/jenkins-docker-plugin:latest"
+    kubernetes {
+      label 'docker'
+      defaultContainer 'jnlp'
     }
-}
+  }
 
   stages {
 
