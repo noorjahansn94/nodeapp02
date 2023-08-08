@@ -4,15 +4,13 @@ pipeline {
     dockerimagename = "noorjahansn/nodejsapps"
     dockerImage = ""
   }
-  agent {
-    label 'docker'
-}
-  // agent {
-  //   kubernetes {
-  //     label 'docker'
+?
+   agent {
+     kubernetes {
+       label 'docker'
   //     defaultContainer 'jnlp'
-  //   }
-  // }
+     }
+   }
 //agent any
  // agent {
     // kubernetes {
