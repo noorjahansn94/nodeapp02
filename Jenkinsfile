@@ -25,7 +25,7 @@ pipeline {
       steps{
         sh 'docker --version'
         //sh 'docker build -t my-image .'
-        sh 'sudo systemctl start docker'
+        sh 'systemctl start docker'
          script{
          docker.build("my-imagesss:latest")
          }
