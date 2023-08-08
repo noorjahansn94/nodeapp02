@@ -25,7 +25,6 @@ pipeline {
       steps{
         sh 'docker --version'
         //sh 'docker build -t my-image .'
-        sh 'systemctl start docker'
         sh 'dockerd &'
         sh 'sleep 10'
          script{
