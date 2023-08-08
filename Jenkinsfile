@@ -4,7 +4,18 @@ pipeline {
     dockerimagename = "noorjahansn/nodejsapps"
     dockerImage = ""
   }
-  agent any
+  agent {
+    kubernetes {
+      label 'docker'
+      image 'docker'
+      args '-v /var/run/docker.sock:/var/run/docker.sock'
+      tag 'dind'
+      command '/bin/sh -c /usr/local/bin/dockerd-entrypoint.sh'
+      TTYEnabled true
+      privileged true
+    }
+  }
+  //agent any
  // agent {
     // kubernetes {
     //   label 'docker'
