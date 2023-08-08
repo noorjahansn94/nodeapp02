@@ -16,6 +16,7 @@ pipeline {
       }
     }
 
+   /*
     stage('Build image') {
       steps{
         docker('docker') {
@@ -29,7 +30,7 @@ pipeline {
         }
       }
     }
-/*
+
     stage('Pushing Image') {
       environment {
                registryCredential = 'dockerhub-credentials'
