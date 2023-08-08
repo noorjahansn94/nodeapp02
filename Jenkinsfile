@@ -5,11 +5,14 @@ pipeline {
     dockerImage = ""
   }
   agent {
-    kubernetes {
-      label 'docker'
-      defaultContainer 'jnlp'
-    }
-  }
+    node('docker')
+}
+  // agent {
+  //   kubernetes {
+  //     label 'docker'
+  //     defaultContainer 'jnlp'
+  //   }
+  // }
   //agent any
  // agent {
     // kubernetes {
