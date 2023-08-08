@@ -18,13 +18,15 @@ pipeline {
 
     stage('Build image') {
       steps{
-        docker('docker') {
+        sh 'docker --version'
+       // docker('docker') {
 
-        dockerBuild(
-            dockerfile: 'Dockerfile',
-            image: 'noorjahansn/nodejsapps'
-            tag: 'latest'
-        )
+
+        // dockerBuild(
+        //     dockerfile: 'Dockerfile',
+        //     image: 'noorjahansn/nodejsapps'
+        //     tag: 'latest'
+        // )
         }
       }
     }
