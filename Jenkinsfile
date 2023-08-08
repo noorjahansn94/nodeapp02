@@ -28,6 +28,9 @@ pipeline {
   stages {
 
     stage('Checkout Source') {
+      agent {
+        node('docker')
+      }
       steps {
       //  git 'https://github.com/noorjahansn94/nodeapp02.git'
       git branch: 'main', url: 'https://github.com/noorjahansn94/nodeapp02.git'
