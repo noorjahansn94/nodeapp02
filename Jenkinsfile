@@ -18,7 +18,7 @@ pipeline {
 
     stage('Build image') {
       steps{
-        docker('docker'){
+        withDocker{
         sh 'docker --version'
        // docker('docker') {
 
