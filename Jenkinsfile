@@ -4,17 +4,17 @@ pipeline {
     dockerimagename = "noorjahansn/nodejsapps"
     dockerImage = ""
   }
- // agent any
-  agent {
+  agent any
+ // agent {
     // kubernetes {
     //   label 'docker'
     //   defaultContainer 'jnlp'
     // }
-    docker {
-            image 'docker:dind'
-            args '-v /var/run/docker.sock:/var/run/docker.sock'
-        }
-  }
+    // docker {
+    //         image 'docker:dind'
+    //         args '-v /var/run/docker.sock:/var/run/docker.sock'
+    //     }
+ // }
 
   stages {
 
