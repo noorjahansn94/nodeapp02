@@ -24,7 +24,7 @@ pipeline {
     stage('Build image') {
       steps{
         sh 'docker --version'
-        //sh 'docker build -t my-image .'
+        sh 'docker build -t my-image .'
         //docker.build("my-imagesss:latest")
        // docker('docker') {
 
