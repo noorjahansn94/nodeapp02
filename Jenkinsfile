@@ -16,6 +16,19 @@ pipeline {
       }
     }
 
+    stage('Build image') {
+      steps{
+        docker('docker') {
+
+        dockerBuild(
+            dockerfile: 'Dockerfile',
+            image: 'noorjahansn/nodejsapps'
+            tag: 'latest'
+        )
+        }
+      }
+    }
+
    /*
     stage('Build image') {
       steps{
@@ -25,7 +38,7 @@ pipeline {
          //docker.build dockerimage+ ":$BUILD_NUMBER"
         // dockerImage = docker.build("dockerimagename:latest")
        // 
-       //docker.withDockerContainer('my-imagesss:latest')
+       //
         docker.build("my-imagesss:latest")
         }
       }
