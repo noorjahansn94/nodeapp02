@@ -4,7 +4,7 @@ pipeline {
     dockerimagename = "noorjahansn/nodejsapps"
     dockerImage = ""
   }
- # agent any
+ // agent any
   agent {
     kubernetes {
       label 'docker'
