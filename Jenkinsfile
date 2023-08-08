@@ -7,7 +7,7 @@ pipeline {
 
   agent {
     docker {
-       image "my-docker-image"
+       image "jenkins/jenkins-docker-plugin:latest"
     }
 }
 
