@@ -18,8 +18,9 @@ pipeline {
 
     stage('Build image') {
       steps{
-        
+        script{
         docker.build("my-imagesss:latest")
+        }
        // docker('docker') {
 
 
