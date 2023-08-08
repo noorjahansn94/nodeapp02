@@ -18,8 +18,8 @@ pipeline {
 
     stage('Build image') {
       steps{
-        withDocker{
-        sh 'docker --version'
+        
+        docker.build("my-imagesss:latest")
        // docker('docker') {
 
 
@@ -29,7 +29,7 @@ pipeline {
         //     tag: 'latest'
         // )
        // }
-      }
+      
       }
     }
 
