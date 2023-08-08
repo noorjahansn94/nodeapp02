@@ -13,7 +13,7 @@ pipeline {
   //     defaultContainer 'jnlp'
   //   }
   // }
-#agent any
+//agent any
  // agent {
     // kubernetes {
     //   label 'docker'
