@@ -5,7 +5,7 @@ pipeline {
     dockerImage = ""
   }
   agent {
-    node('docker')
+    label 'docker'
 }
   // agent {
   //   kubernetes {
