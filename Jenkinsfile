@@ -8,7 +8,7 @@ pipeline {
    agent {
      kubernetes {
        label 'docker'
-  //     defaultContainer 'jnlp'
+       defaultContainer 'jnlp'
      }
    }
 //agent any
