@@ -7,7 +7,7 @@ pipeline {
 
   agent {
     docker {
-        label "docker"
+       image "my-docker-image"
     }
 }
 
