@@ -1,12 +1,12 @@
 pipeline {
 
   environment {
-    dockerimagename = "noorjahansn/nodejsapps"
+    dockerimagename = "noorjahansn/nodejsappeg"
     dockerImage = ""
   }
-agent {
-  label 'docker'
-}
+// agent {
+//   label 'docker'
+// }
   //  agent {
   //    kubernetes {
   //      label 'docker'
@@ -36,25 +36,33 @@ agent {
 
     stage('Build image') {
       steps{
-        sh 'docker --version'
-        //sh 'docker build -t my-image .'
-        sh 'dockerd &'
-        sh 'sleep 10'
-         script{
-         docker.build("my-imagesss:latest")
-         }
-       // docker('docker') {
-
-
-        // dockerBuild(
-        //     dockerfile: 'Dockerfile',
-        //     image: 'noorjahansn/nodejsapps'
-        //     tag: 'latest'
-        // )
-       // }
-      
+        script {
+          dockerImage = docker.build dockerimagename
+        }
       }
     }
+
+    // stage('Build image') {
+    //   steps{
+    //     sh 'docker --version'
+    //     //sh 'docker build -t my-image .'
+    //     sh 'dockerd &'
+    //     sh 'sleep 10'
+    //      script{
+    //      docker.build("my-imagesss:latest")
+    //      }
+    //    // docker('docker') {
+
+
+    //     // dockerBuild(
+    //     //     dockerfile: 'Dockerfile',
+    //     //     image: 'noorjahansn/nodejsapps'
+    //     //     tag: 'latest'
+    //     // )
+    //    // }
+      
+    //   }
+    // }
 
    /*
     stage('Build image') {
