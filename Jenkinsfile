@@ -27,7 +27,7 @@ pipeline {
         //     image: 'noorjahansn/nodejsapps'
         //     tag: 'latest'
         // )
-        }
+       // }
       }
     }
 
