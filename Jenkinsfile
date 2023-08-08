@@ -18,6 +18,7 @@ pipeline {
 
     stage('Build image') {
       steps{
+        docker('docker'){
         sh 'docker --version'
        // docker('docker') {
 
@@ -28,6 +29,7 @@ pipeline {
         //     tag: 'latest'
         // )
        // }
+      }
       }
     }
 
