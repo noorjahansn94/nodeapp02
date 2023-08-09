@@ -36,22 +36,22 @@ pipeline {
       }
     }
 
-    stage('docker version') {
-      steps {
-      //  git 'https://github.com/noorjahansn94/nodeapp02.git'
-      sh 'docker --version'
-      sh 'which docker'
-      //node('docker') {
-        git branch: 'main', url: 'https://github.com/noorjahansn94/nodeapp02.git'
-        sh 'docker --version'
-        script {
-           dockerImage = docker.build dockerimagename
-         }
-      //}
-      //sh 'docker start'
-      //sh 'docker build -t my-image .'
-      }
-    }
+    // stage('docker version') {
+    //   steps {
+    //   //  git 'https://github.com/noorjahansn94/nodeapp02.git'
+    //   sh 'docker --version'
+    //   sh 'which docker'
+    //   //node('docker') {
+    //     git branch: 'main', url: 'https://github.com/noorjahansn94/nodeapp02.git'
+    //     sh 'docker --version'
+    //     script {
+    //        dockerImage = docker.build dockerimagename
+    //      }
+    //   //}
+    //   //sh 'docker start'
+    //   //sh 'docker build -t my-image .'
+    //   }
+    // }
 /*
     stage('Build image') {
       steps{
@@ -111,7 +111,7 @@ pipeline {
         }
       }
     }
-
+*/
     stage('Deploying App to Kubernetes') {
       steps {
         script {
@@ -119,7 +119,7 @@ pipeline {
         }
       }
     }
-*/
+
   }
 
 }
