@@ -3,6 +3,7 @@ pipeline {
   environment {
     dockerimagename = "noorjahansn/nodejsappeg"
     dockerImage = ""
+    DOCKER_HOST = 'localhost:2375'
   }
  agent {
    label 'docker'
@@ -36,7 +37,6 @@ pipeline {
 
     stage('docker version') {
       steps {
-      env.DOCKER_HOST = 'localhost:2375'
       //  git 'https://github.com/noorjahansn94/nodeapp02.git'
       sh 'docker --version'
       sh 'which docker'
