@@ -5,10 +5,11 @@ pipeline {
     dockerImage = ""
    // DOCKER_HOST = 'localhost:2375'
   }
- agent {
-   label 'docker'
-   //docker { image 'docker:dind' }
- }
+  agent any
+//  agent {
+//    label 'docker'
+//    //docker { image 'docker:dind' }
+//  }
   //  agent {
   //    kubernetes {
   //      label 'docker'
@@ -33,6 +34,11 @@ pipeline {
       steps {
       //  git 'https://github.com/noorjahansn94/nodeapp02.git'
       git branch: 'main', url: 'https://github.com/noorjahansn94/nodeapp02.git'
+      }
+    }
+    stage('docker version'){
+      steps{
+        sh 'docker --version'
       }
     }
 
@@ -111,7 +117,7 @@ pipeline {
         }
       }
     }
-*/
+
     stage('Deploying App to Kubernetes') {
       steps {
         script {
@@ -125,7 +131,7 @@ pipeline {
         }
       }
     }
-
+*/
   }
 
 }
