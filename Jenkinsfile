@@ -5,11 +5,11 @@ pipeline {
     dockerImage = ""
    // DOCKER_HOST = 'localhost:2375'
   }
-  agent any
-//  agent {
-//    label 'docker'
+//  agent any
+  agent {
+    label 'docker'
 //    //docker { image 'docker:dind' }
-//  }
+  }
   //  agent {
   //    kubernetes {
   //      label 'docker'
@@ -39,7 +39,8 @@ pipeline {
      stage('Build image') {
       steps{
         script {
-          dockerImage = docker.build dockerimagename
+          //dockerImage = docker.build dockerimagename
+          sh 'docker build -t noorjahansn/nodejsappeg .'
         }
       }
     }
