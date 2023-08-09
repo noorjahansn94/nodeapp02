@@ -38,7 +38,7 @@ pipeline {
       steps {
       //  git 'https://github.com/noorjahansn94/nodeapp02.git'
       sh 'docker --version'
-      sh 'docker ps'
+      sh 'which docker'
      // sh 'docker build -t my-image .'
       }
     }
