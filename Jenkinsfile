@@ -33,6 +33,13 @@ pipeline {
       git branch: 'main', url: 'https://github.com/noorjahansn94/nodeapp02.git'
       }
     }
+
+    stage('docker version') {
+      steps {
+      //  git 'https://github.com/noorjahansn94/nodeapp02.git'
+      sh 'docker --version'
+      }
+    }
 /*
     stage('Build image') {
       steps{
