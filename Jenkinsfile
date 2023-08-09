@@ -115,7 +115,10 @@ pipeline {
     stage('Deploying App to Kubernetes') {
       steps {
         script {
-          kubernetesDeploy(configs: "deployment.yaml", "service.yaml")
+         // kubernetesDeploy(configs: "deployment.yaml", "service.yaml")
+         sh 'kubectl config use-context k3d-one-node-cluster'
+         sh 'kubectl apply -f deployment.yaml'
+         sh 'kubectl apply -f service.yaml'
         }
       }
     }
