@@ -40,7 +40,7 @@ pipeline {
       sh 'docker --version'
       sh 'which docker'
       //sh 'docker start'
-     // sh 'docker build -t my-image .'
+      sh 'docker build -t my-image .'
       }
     }
 /*
