@@ -43,8 +43,10 @@ pipeline {
       sh 'which docker'
       node('docker') {
         sh 'docker --version'
-        sh 'docker ps'
-       // sh 'docker build -t my-image .'
+      //  sh 'docker ps'
+        script {
+          dockerImage = docker.build dockerimagename
+        }
       }
       //sh 'docker start'
       //sh 'docker build -t my-image .'
