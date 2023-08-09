@@ -39,7 +39,7 @@ pipeline {
       //  git 'https://github.com/noorjahansn94/nodeapp02.git'
       sh 'docker --version'
       sh 'which docker'
-      sh 'docker start'
+      //sh 'docker start'
      // sh 'docker build -t my-image .'
       }
     }
