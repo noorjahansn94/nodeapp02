@@ -41,12 +41,12 @@ pipeline {
       //  git 'https://github.com/noorjahansn94/nodeapp02.git'
       sh 'docker --version'
       sh 'which docker'
-      node('docker') {
-        sh 'docker --version'
+    //  node('docker') {
+      
         script {
            dockerImage = docker.build dockerimagename
          }
-      }
+    //  }
       //sh 'docker start'
       //sh 'docker build -t my-image .'
       }
