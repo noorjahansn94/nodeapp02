@@ -5,18 +5,18 @@ pipeline {
     dockerImage = ""
  
   }
-  agent any
-  // agent {
-  //   label 'docker'
+  //agent any
+   agent {
+     label 'docker'
   //   //  docker {
   //   //          image 'docker:dind'
   //   //          args '-v /var/run/docker.sock:/var/run/docker.sock'
   //   //      }
-  // }
-  //  tools {
-  //       // Define Docker tool installation named 'docker'
-  //       dockerTool 'docker'
-  //   }
+   }
+   tools {
+        // Define Docker tool installation named 'docker'
+        dockerTool 'docker'
+    }
   //  agent {
   //    kubernetes {
   //      label 'docker'
