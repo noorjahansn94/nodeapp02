@@ -3,7 +3,7 @@ pipeline {
   environment {
     dockerimagename = "noorjahansn/nodejsappeg"
     dockerImage = ""
-   // DOCKER_HOST = 'localhost:2375'
+ 
   }
 //  agent any
   agent {
@@ -19,17 +19,7 @@ pipeline {
   //      defaultContainer 'jnlp'
   //    }
   //  }
-//agent any
- // agent {
-    // kubernetes {
-    //   label 'docker'
-    //   defaultContainer 'jnlp'
-    // }
-    // docker {
-    //         image 'docker:dind'
-    //         args '-v /var/run/docker.sock:/var/run/docker.sock'
-    //     }
- // }
+
 
   stages {
 
@@ -51,22 +41,6 @@ pipeline {
     }
   
 
-    // stage('docker version') {
-    //   steps {
-    //   //  git 'https://github.com/noorjahansn94/nodeapp02.git'
-    //   sh 'docker --version'
-    //   sh 'which docker'
-    //   //node('docker') {
-    //     git branch: 'main', url: 'https://github.com/noorjahansn94/nodeapp02.git'
-    //     sh 'docker --version'
-    //     script {
-    //        dockerImage = docker.build dockerimagename
-    //      }
-    //   //}
-    //   //sh 'docker start'
-    //   //sh 'docker build -t my-image .'
-    //   }
-    // }
 /*
     stage('Build image') {
       steps{
@@ -77,27 +51,7 @@ pipeline {
     }
 */
 
-    // stage('Build image') {
-    //   steps{
-    //     sh 'docker --version'
-    //     //sh 'docker build -t my-image .'
-    //     sh 'dockerd &'
-    //     sh 'sleep 10'
-    //      script{
-    //      docker.build("my-imagesss:latest")
-    //      }
-    //    // docker('docker') {
-
-
-    //     // dockerBuild(
-    //     //     dockerfile: 'Dockerfile',
-    //     //     image: 'noorjahansn/nodejsapps'
-    //     //     tag: 'latest'
-    //     // )
-    //    // }
-      
-    //   }
-    // }
+    
 
    /*
     stage('Build image') {
