@@ -8,10 +8,7 @@ pipeline {
   //agent any
    agent {
      label 'docker'
-  //   //  docker {
-  //   //          image 'docker:dind'
-  //   //          args '-v /var/run/docker.sock:/var/run/docker.sock'
-  //   //      }
+
    }
   //  tools {
   //       // Define Docker tool installation named 'docker'
@@ -33,20 +30,7 @@ pipeline {
       git branch: 'main', url: 'https://github.com/noorjahansn94/nodeapp02.git'
       }
     }
-    //  stage('Build image') {
-    //   steps{
-    //     docker('docker'){
-        
-    //       //dockerImage = docker.build dockerimagename
-    //      sh 'docker --version'
-    //      sh 'which docker'
-    //      sh 'docker build -t noorjahansn/nodejsappeg .'
-        
-    //   }
-    // }
-    //  }
-  
-
+    
 
     stage('Build image') {
       steps{
@@ -62,19 +46,7 @@ pipeline {
     
 
    /*
-    stage('Build image') {
-      steps{
-        docker('docker') {
-          //  sh docker build -t my-image .
-         //   dockerImage = docker.build dockerimagename
-         //docker.build dockerimage+ ":$BUILD_NUMBER"
-        // dockerImage = docker.build("dockerimagename:latest")
-       // 
-       //
-        docker.build("my-imagesss:latest")
-        }
-      }
-    }
+    
 
     stage('Pushing Image') {
       environment {
