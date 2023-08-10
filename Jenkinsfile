@@ -36,12 +36,12 @@ pipeline {
      stage('Build image') {
       steps{
         docker('docker'){
-        script {
+        
           //dockerImage = docker.build dockerimagename
          sh 'docker --version'
          sh 'which docker'
          sh 'docker build -t noorjahansn/nodejsappeg .'
-        }
+        
       }
     }
      }
