@@ -35,6 +35,7 @@ pipeline {
     }
      stage('Build image') {
       steps{
+        docker{
         script {
           //dockerImage = docker.build dockerimagename
          sh 'docker --version'
@@ -43,6 +44,7 @@ pipeline {
         }
       }
     }
+     }
   
 
 /*
