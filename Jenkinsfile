@@ -33,29 +33,31 @@ pipeline {
       git branch: 'main', url: 'https://github.com/noorjahansn94/nodeapp02.git'
       }
     }
-     stage('Build image') {
-      steps{
-        docker('docker'){
+    //  stage('Build image') {
+    //   steps{
+    //     docker('docker'){
         
-          //dockerImage = docker.build dockerimagename
-         sh 'docker --version'
-         sh 'which docker'
-         sh 'docker build -t noorjahansn/nodejsappeg .'
+    //       //dockerImage = docker.build dockerimagename
+    //      sh 'docker --version'
+    //      sh 'which docker'
+    //      sh 'docker build -t noorjahansn/nodejsappeg .'
         
-      }
-    }
-     }
+    //   }
+    // }
+    //  }
   
 
-/*
+
     stage('Build image') {
       steps{
         script {
+           sh 'docker --version'
+           sh 'which docker'
           dockerImage = docker.build dockerimagename
         }
       }
     }
-*/
+
 
     
 
