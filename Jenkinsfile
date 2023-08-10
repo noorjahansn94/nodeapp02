@@ -40,7 +40,9 @@ pipeline {
       steps{
         script {
           //dockerImage = docker.build dockerimagename
-          sh 'docker build -t noorjahansn/nodejsappeg .'
+         sh 'docker --version'
+         sh 'which docker'
+         sh 'docker build -t noorjahansn/nodejsappeg .'
         }
       }
     }
