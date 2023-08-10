@@ -13,6 +13,10 @@ pipeline {
     //          args '-v /var/run/docker.sock:/var/run/docker.sock'
     //      }
   }
+   tools {
+        // Define Docker tool installation named 'docker'
+        dockerTool 'docker'
+    }
   //  agent {
   //    kubernetes {
   //      label 'docker'
