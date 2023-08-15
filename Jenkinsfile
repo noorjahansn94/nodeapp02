@@ -48,7 +48,7 @@ pipeline {
 
     
 
-   /*
+   
     
 
     stage('Pushing Image') {
@@ -57,13 +57,15 @@ pipeline {
            }
       steps{
         script {
+          container('dind') {
           docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
             dockerImage.push("latest")
+          }
           }
         }
       }
     }
-
+/*
     stage('Deploying App to Kubernetes') {
       steps {
         script {
