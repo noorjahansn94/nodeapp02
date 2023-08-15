@@ -5,11 +5,11 @@ pipeline {
     dockerImage = ""
  
   }
-  //agent any
-   agent {
-     label 'docker'
+  agent any
+  //  agent {
+  //    label 'docker'
 
-   }
+  //  }
   //  tools {
   //       // Define Docker tool installation named 'docker'
   //       dockerTool 'docker'
