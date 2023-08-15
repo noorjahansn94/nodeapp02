@@ -35,6 +35,7 @@ pipeline {
     stage('Build image') {
       steps{
         script {
+          sh 'docker info'
            sh 'docker --version'
            sh 'which docker'
           dockerImage = docker.build dockerimagename
