@@ -65,21 +65,22 @@ pipeline {
         }
       }
     }
-/*
+
     stage('Deploying App to Kubernetes') {
       steps {
         script {
-          kubeconfig(serverUrl: 'https://localhost:51125') {
-          sh 'kubectl config use-context k3d-one-node-cluster'
-          sh 'kubectl apply -f deployment.yaml'
-          sh 'kubectl apply -f service.yaml'
+          // kubeconfig(serverUrl: 'https://localhost:51125') {
+          // sh 'kubectl config use-context k3d-one-node-cluster'
+          // sh 'kubectl apply -f deployment.yaml'
+          // sh 'kubectl apply -f service.yaml'
+          kubernetesDeploy(configs: "deployment.yaml", "service.yaml")
       }
          // kubernetesDeploy(configs: "deployment.yaml", "service.yaml")
          
         }
       }
     }
-*/
+
   }
 
 }
