@@ -73,7 +73,7 @@ pipeline {
           container('kubectl'){
             echo "first command start"
             sh 'kubectl version'
-            kubeconfig(serverUrl: 'https://localhost:51125') {
+            kubeconfig(serverUrl: 'https://0.0.0.0:51125') {
             withCredentials([file(credentialsId: 'kube-credentials', variable: 'KUBECONFIG')]) {
       // Set the KUBECONFIG environment variable to the temporary file path
       sh "export KUBECONFIG=${KUBECONFIG}"
