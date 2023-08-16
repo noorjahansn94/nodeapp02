@@ -3,7 +3,7 @@ pipeline {
   environment {
     dockerimagename = "noorjahansn/nodejsappeg"
     dockerImage = ""
-    KUBECONFIG_CREDENTIALS = credentials('kube-credentialsssss')
+    KUBECONFIG_CREDENTIALS = credentials('kube-credentials')
     // PATH = "${tool name: 'kubectl', type: 'ToolType'}:${env.PATH}"
  
   }
