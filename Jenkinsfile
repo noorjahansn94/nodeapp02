@@ -71,6 +71,7 @@ pipeline {
     withCredentials([file(credentialsId: 'kube-credentials', variable: 'KUBECONFIG')]) {
       // Set the KUBECONFIG environment variable to the temporary file path
       sh "export KUBECONFIG=${KUBECONFIG}"
+      echo "KUBECONFIG value: ${env.KUBECONFIG}"
 
       // Run kubectl commands using the kubeconfig
       sh 'kubectl apply -f deployment.yaml'
