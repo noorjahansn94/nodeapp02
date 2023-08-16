@@ -3,6 +3,7 @@ pipeline {
   environment {
     dockerimagename = "noorjahansn/nodejsappeg"
     dockerImage = ""
+    PATH = "${tool name: 'kubectl', type: 'ToolType'}:${env.PATH}"
  
   }
   //agent any
