@@ -74,6 +74,18 @@ pipeline {
           container('kubectl'){
             echo "first command start"
             sh 'kubectl version'
+            withCredentials([file(credentialsId: 'kube-credentials', variable: 'KUBECONFIG')]) {
+      // Set the KUBECONFIG environment variable to the temporary file path
+      sh "export KUBECONFIG=${KUBECONFIG}"
+      echo "KUBECONFIG value: ${env.KUBECONFIG}"
+
+      // Run kubectl commands using the kubeconfig
+      sh 'kubectl apply -f deployment.yaml'
+
+
+
+
+
         //  def kubeconfigPath = sh(script: "echo \$KUBECONFIG_CREDENTIALS", returnStdout: true).trim()
         //  echo "first command end"
         //  echo "second command start"
