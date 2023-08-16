@@ -71,9 +71,13 @@ pipeline {
     stage('Apply Kubernetes files') {
       steps{
         script {
+          container('dind'){
+            sh 'kubectl version --client'
+
+          }
          //kubernetes(configs: "deployment.yaml service.yaml", kubeconfigId: "kube-credentials")
-         def kubeconfigPath = sh(script: "echo \$KUBECONFIG_CREDENTIALS", returnStdout: true).trim()
-         kubernetes(configs: "deployment.yaml service.yaml", kubeconfigPath: kubeconfigPath)
+         //def kubeconfigPath = sh(script: "echo \$KUBECONFIG_CREDENTIALS", returnStdout: true).trim()
+         //kubernetes(configs: "deployment.yaml service.yaml", kubeconfigPath: kubeconfigPath)
          }
     // withCredentials([file(credentialsId: 'kube-credentials', variable: 'KUBECONFIG')]) {
     //   // Set the KUBECONFIG environment variable to the temporary file path
