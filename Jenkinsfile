@@ -66,27 +66,32 @@ pipeline {
       }
     }
 
-    
+    stage('Apply Kubernetes files') {
+      steps{
+    withCredentials([file(credentialsId: 'kube-credentials', variable: 'KUBECONFIG')]) {
+      // Set the KUBECONFIG environment variable to the temporary file path
+      sh "export KUBECONFIG=${KUBECONFIG}"
+
+      // Run kubectl commands using the kubeconfig
+      sh 'kubectl apply -f deployment.yaml'
+    }
+  }
+    }
+
           // kubeconfig(serverUrl: 'https://localhost:51125') {
           // sh 'kubectl config use-context k3d-one-node-cluster'
           // sh 'kubectl apply -f deployment.yaml'
           // sh 'kubectl apply -f service.yaml'
-    stage('Deploying App to Kubernetes') {
-      steps {
-        script {
-                    def kubeconfig = readFile("${JENKINS_HOME}/.kube/config") // Path to your kubeconfig file
-                    sh "echo '\$kubeconfig' > kubeconfig.yaml" // Write kubeconfig to a file
-
-                    // Apply your Kubernetes resources using kubectl
-                    sh "kubectl apply -f deployment.yaml -f service.yaml --kubeconfig kubeconfig.yaml"
-                }
-      //   script {
-      //     kubernetes(configs: "deployment.yaml service.yaml", kubeconfigId: "kubernetes")
-      // }
-         // kubernetesDeploy(configs: "deployment.yaml", "service.yaml")
+    // stage('Deploying App to Kubernetes') {
+    //   steps {
+        
+    //   //   script {
+    //   //     kubernetes(configs: "deployment.yaml service.yaml", kubeconfigId: "kubernetes")
+    //   // }
+    //      // kubernetesDeploy(configs: "deployment.yaml", "service.yaml")
          
-        }
-      }
+    //     }
+    //   }
     }
 
   }
