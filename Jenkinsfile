@@ -85,7 +85,7 @@ pipeline {
 
       // Run kubectl commands using the kubeconfig
       
-      sh 'kubectl config use-context k3d-one-node-cluster --server=${env.KUBE_SERVER_URL}'
+      sh 'kubectl config use-context k3d-one-node-cluster --server=http://localhost:51125'
       sh 'kubectl apply -f deployment.yaml'
       }
 
