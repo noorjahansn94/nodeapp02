@@ -73,13 +73,14 @@ pipeline {
           container('kubectl'){
             echo "first command start"
             sh 'kubectl version'
+            kubeconfig(serverUrl: 'https://localhost:51125') {
             withCredentials([file(credentialsId: 'kube-credentials', variable: 'KUBECONFIG')]) {
       // Set the KUBECONFIG environment variable to the temporary file path
       sh "export KUBECONFIG=${KUBECONFIG}"
       echo "KUBECONFIG value: ${env.KUBECONFIG}"
 
       // Run kubectl commands using the kubeconfig
-      kubeconfig(serverUrl: 'https://localhost:51125') {
+      
       sh 'kubectl config use-context k3d-one-node-cluster'
       sh 'kubectl apply -f deployment.yaml'
       }
