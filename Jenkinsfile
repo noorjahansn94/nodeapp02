@@ -74,8 +74,15 @@ pipeline {
     stage('Deploying App to Kubernetes') {
       steps {
         script {
-          kubernetes(configs: "deployment.yaml service.yaml", kubeconfigId: "kubernetes")
-      }
+                    def kubeconfig = readFile("${JENKINS_HOME}/.kube/config") // Path to your kubeconfig file
+                    sh "echo '\$kubeconfig' > kubeconfig.yaml" // Write kubeconfig to a file
+
+                    // Apply your Kubernetes resources using kubectl
+                    sh "kubectl apply -f deployment.yaml -f service.yaml --kubeconfig kubeconfig.yaml"
+                }
+      //   script {
+      //     kubernetes(configs: "deployment.yaml service.yaml", kubeconfigId: "kubernetes")
+      // }
          // kubernetesDeploy(configs: "deployment.yaml", "service.yaml")
          
         }
