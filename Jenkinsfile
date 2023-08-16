@@ -3,6 +3,7 @@ pipeline {
   environment {
     dockerimagename = "noorjahansn/nodejsappeg"
     dockerImage = ""
+    KUBECONFIG_CREDENTIALS = credentials('kube-credentials')
     // PATH = "${tool name: 'kubectl', type: 'ToolType'}:${env.PATH}"
  
   }
@@ -70,7 +71,9 @@ pipeline {
     stage('Apply Kubernetes files') {
       steps{
         script {
-         kubernetes(configs: "deployment.yaml service.yaml", kubeconfigId: "kube-credentials")
+         //kubernetes(configs: "deployment.yaml service.yaml", kubeconfigId: "kube-credentials")
+         def kubeconfigPath = sh(script: "echo \$KUBECONFIG_CREDENTIALS", returnStdout: true).trim()
+         kubernetes(configs: "deployment.yaml service.yaml", kubeconfigPath: kubeconfigPath)
          }
     // withCredentials([file(credentialsId: 'kube-credentials', variable: 'KUBECONFIG')]) {
     //   // Set the KUBECONFIG environment variable to the temporary file path
