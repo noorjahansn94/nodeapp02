@@ -4,7 +4,7 @@ pipeline {
     dockerimagename = "noorjahansn/nodejsappeg"
     dockerImage = ""
     KUBECONFIG_CREDENTIALS = credentials('kube-credentials')
-    KUBE_SERVER_URL = 'https://0.0.0.0:51125'
+    KUBE_SERVER_URL = 'https://localhost:51125'
     // PATH = "${tool name: 'kubectl', type: 'ToolType'}:${env.PATH}"
  
   }
@@ -75,8 +75,7 @@ pipeline {
             echo "first command start"
             sh 'kubectl version'
 
-            def response = sh(script: "curl -s https://0.0.0.0:51125", returnStdout: true).trim()
-            echo "Response from server: ${response}"
+           
             
             withCredentials([file(credentialsId: 'kube-credentials', variable: 'KUBECONFIG')]) {
       // Set the KUBECONFIG environment variable to the temporary file path
