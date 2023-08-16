@@ -74,7 +74,9 @@ pipeline {
                 script {
                   container('kubectl'){
                      withKubeConfig(credentialsId: 'kube-credentials') {
-                        sh 'kubectl apply -f deployment.yaml'
+                      sh 'kubectl config use-context k3d-one-node-cluster'
+                      sh 'kubectl get po'
+                      sh 'kubectl apply -f deployment.yaml'
                     }
                 }
             }
