@@ -4,6 +4,7 @@ pipeline {
     dockerimagename = "noorjahansn/nodejsappeg"
     dockerImage = ""
     KUBECONFIG_CREDENTIALS = credentials('kube-credentials')
+    KUBE_SERVER_URL = 'https://0.0.0.0:51125'
     // PATH = "${tool name: 'kubectl', type: 'ToolType'}:${env.PATH}"
  
   }
@@ -73,11 +74,12 @@ pipeline {
           container('kubectl'){
             echo "first command start"
             sh 'kubectl version'
-            kubeconfig(serverUrl: 'https://0.0.0.0:51125') {
+            
             withCredentials([file(credentialsId: 'kube-credentials', variable: 'KUBECONFIG')]) {
       // Set the KUBECONFIG environment variable to the temporary file path
       sh "export KUBECONFIG=${KUBECONFIG}"
       echo "KUBECONFIG value: ${env.KUBECONFIG}"
+      sh "kubectl config set-cluster my-cluster --server=${KUBE_SERVER_URL}"
 
       // Run kubectl commands using the kubeconfig
       
@@ -93,7 +95,7 @@ pipeline {
         //  echo "second command start"
         //  kubernetes(configs: "deployment.yaml service.yaml", kubeconfigPath: kubeconfigPath)
         //  echo "second command end"
-          }
+          
          //kubernetes(configs: "deployment.yaml service.yaml", kubeconfigId: "kube-credentials")
          //def kubeconfigPath = sh(script: "echo \$KUBECONFIG_CREDENTIALS", returnStdout: true).trim()
          //kubernetes(configs: "deployment.yaml service.yaml", kubeconfigPath: kubeconfigPath)
