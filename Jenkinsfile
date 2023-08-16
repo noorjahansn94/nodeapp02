@@ -71,11 +71,14 @@ pipeline {
             steps {
                 script {
                   container('kubectl'){
-                    def kubeconfigContent = credentials('kube-credentials')
-                    sh """ 
-                    echo "$kubeconfigContent" > kubeconfig.yaml
-                    kubectl apply -f deployment.yaml --kubeconfig=kubeconfig.yaml
-                    """
+                    // def kubeconfigContent = credentials('kube-credentials')
+                    // sh """ 
+                    // echo "$kubeconfigContent" > kubeconfig.yaml
+                    // kubectl apply -f deployment.yaml --kubeconfig=kubeconfig.yaml
+                    // """
+                def kubeconfigContent = credentials('kube-credentials')
+                writeFile file: 'kubeconfig.yaml', text: kubeconfigContent
+                sh "kubectl apply -f deployment.yaml --kubeconfig=kubeconfig.yaml"
                 }
             }
         }
