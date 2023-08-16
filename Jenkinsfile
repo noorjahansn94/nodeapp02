@@ -9,19 +9,19 @@ pipeline {
  
   }
   //agent any
-   agent {
-     label 'docker'
-  }
+  //  agent {
+  //    label 'docker'
+  // }
   //  tools {
   //       // Define Docker tool installation named 'docker'
   //       dockerTool 'docker'
   //   }
-  //  agent {
-  //    kubernetes {
-  //      label 'docker'
-  //     // defaultContainer 'jnlp'
-  //    }
-  //  }
+   agent {
+     kubernetes {
+       label 'docker'
+      // defaultContainer 'jnlp'
+     }
+   }
 
 
   stages {
@@ -67,20 +67,34 @@ pipeline {
     //     }
     //   }
     // }
-    stage('Deploy to Kubernetes') {
+
+stages {
+        stage('Deploy App with Kubernetes Agent') {
             steps {
                 script {
-                  container('kubectl'){
-                    def kubeconfigContent = credentials('kube-credentials')
-                    sh """ 
-                    echo "$KUBECONFIG" > kubeconfig.yaml
-                    kubectl apply -f deployment.yaml --kubeconfig=kubeconfig.yaml
-                    """
-       
+                    kubernetesDeploy(configs: "deployment.yaml", kubeconfigId: "${env.KUBECONFIG}")
                 }
             }
         }
-    }
+
+
+
+
+
+    // stage('Deploy to Kubernetes') {
+    //         steps {
+    //             script {
+    //               container('kubectl'){
+    //                 def kubeconfigContent = credentials('kube-credentials')
+    //                 sh """ 
+    //                 echo "$KUBECONFIG" > kubeconfig.yaml
+    //                 kubectl apply -f deployment.yaml --kubeconfig=kubeconfig.yaml
+    //                 """
+       
+    //             }
+    //         }
+    //     }
+    // }
     // stage('Apply Kubernetes files') {
     //   steps{
     //     script {
