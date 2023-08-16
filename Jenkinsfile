@@ -70,6 +70,7 @@ pipeline {
     stage('Deploy to Kubernetes') {
             steps {
                 script {
+                  container('kubectl'){
                     sh """
                     echo "$KUBECONFIG" > kubeconfig.yaml
                     kubectl apply -f deployment.yaml --kubeconfig=kubeconfig.yaml
@@ -77,6 +78,7 @@ pipeline {
                 }
             }
         }
+    }
     // stage('Apply Kubernetes files') {
     //   steps{
     //     script {
