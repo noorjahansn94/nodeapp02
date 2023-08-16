@@ -74,6 +74,9 @@ pipeline {
           container('kubectl'){
             echo "first command start"
             sh 'kubectl version'
+
+            def response = sh(script: "curl -s https://0.0.0.0:51125", returnStdout: true).trim()
+            echo "Response from server: ${response}"
             
             withCredentials([file(credentialsId: 'kube-credentials', variable: 'KUBECONFIG')]) {
       // Set the KUBECONFIG environment variable to the temporary file path
