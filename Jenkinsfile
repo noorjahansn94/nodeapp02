@@ -80,6 +80,7 @@ pipeline {
       echo "KUBECONFIG value: ${env.KUBECONFIG}"
 
       // Run kubectl commands using the kubeconfig
+      sh 'kubectl config use-context k3d-one-node-cluster'
       sh 'kubectl apply -f deployment.yaml'
 
 
