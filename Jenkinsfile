@@ -72,7 +72,8 @@ pipeline {
                 script {
                   container('kubectl'){
                     sh """
-                    echo "$KUBECONFIG" > kubeconfig.yaml
+                    export KUBECONFIG_CONTENT="$KUBECONFIG"
+                    echo "$KUBECONFIG_CONTENT" > kubeconfig.yaml
                     kubectl apply -f deployment.yaml --kubeconfig=kubeconfig.yaml
                     """
                 }
