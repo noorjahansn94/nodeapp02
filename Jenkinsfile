@@ -3,7 +3,7 @@ pipeline {
   environment {
     dockerimagename = "noorjahansn/nodejsappeg"
     dockerImage = ""
-    KUBECONFIG_CREDENTIALS = credentials('kube-credentials')
+    KUBECONFIG = credentials('kube-credentials')
     KUBE_SERVER_URL = 'http://localhost:51125'
     // PATH = "${tool name: 'kubectl', type: 'ToolType'}:${env.PATH}"
  
@@ -67,31 +67,40 @@ pipeline {
         }
       }
     }
-
-    stage('Apply Kubernetes files') {
-      steps{
-        script {
-          container('kubectl'){
-            echo "first command start"
-            sh 'kubectl version'
+    stage('Deploy to Kubernetes') {
+            steps {
+                script {
+                    sh """
+                    echo "$KUBECONFIG" > kubeconfig.yaml
+                    kubectl apply -f deployment.yaml --kubeconfig=kubeconfig.yaml
+                    """
+                }
+            }
+        }
+    // stage('Apply Kubernetes files') {
+    //   steps{
+    //     script {
+    //       container('kubectl'){
+    //         echo "first command start"
+    //         sh 'kubectl version'
 
            
             
-            withCredentials([file(credentialsId: 'kube-credentials', variable: 'KUBECONFIG')]) {
+          //  withCredentials([file(credentialsId: 'kube-credentials', variable: 'KUBECONFIG')]) {
       // Set the KUBECONFIG environment variable to the temporary file path
-      sh "export KUBECONFIG=$HOME/.kube/config"
-      echo "KUBECONFIG value: ${env.KUBECONFIG}"
+      // sh "export KUBECONFIG=$HOME/.kube/config"
+      // echo "KUBECONFIG value: ${env.KUBECONFIG}"
      // sh "kubectl config set-cluster k3d-one-node-cluster --server=${env.KUBE_SERVER_URL}"
 
       // Run kubectl commands using the kubeconfig
-      echo "available contexts:"
-      sh 'kubectl config get-contexts'
-      echo "availa context in pod?????"
-      sh 'kubectl config get-contexts --kubeconfig=/home/jenkins/.kube/config'
-      sh 'kubectl config use-context k3d-one-node-cluster --server=http://localhost:51125 --kubeconfig=${env.KUBECONFIG}'
-      sh 'kubectl get pods'
-      sh 'kubectl apply -f deployment.yaml'
-      }
+      // echo "available contexts:"
+      // sh 'kubectl config get-contexts'
+      // echo "availa context in pod?????"
+      // sh 'kubectl config get-contexts --kubeconfig=/home/jenkins/.kube/config'
+      // sh 'kubectl config use-context k3d-one-node-cluster --server=http://localhost:51125 --kubeconfig=${env.KUBECONFIG}'
+      // sh 'kubectl get pods'
+      // sh 'kubectl apply -f deployment.yaml'
+      // }
 
 
 
@@ -105,7 +114,7 @@ pipeline {
          //kubernetes(configs: "deployment.yaml service.yaml", kubeconfigId: "kube-credentials")
          //def kubeconfigPath = sh(script: "echo \$KUBECONFIG_CREDENTIALS", returnStdout: true).trim()
          //kubernetes(configs: "deployment.yaml service.yaml", kubeconfigPath: kubeconfigPath)
-         }
+       //  }
     // withCredentials([file(credentialsId: 'kube-credentials', variable: 'KUBECONFIG')]) {
     //   // Set the KUBECONFIG environment variable to the temporary file path
     //   sh "export KUBECONFIG=${KUBECONFIG}"
@@ -114,8 +123,8 @@ pipeline {
     //   // Run kubectl commands using the kubeconfig
     //   sh 'kubectl apply -f deployment.yaml'
     // }
-  }
-    }
+  //}
+  //  }
 
           // kubeconfig(serverUrl: 'https://localhost:51125') {
           // sh 'kubectl config use-context k3d-one-node-cluster'
@@ -131,10 +140,11 @@ pipeline {
          
     //     }
     //   }
-    }
+  //  }
 
   }
 }
+
 
 
 /*
