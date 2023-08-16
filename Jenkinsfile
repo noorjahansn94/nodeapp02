@@ -72,8 +72,12 @@ pipeline {
       steps{
         script {
           container('dind'){
-            sh 'kubectl version --client'
-
+            echo "first command start"
+         def kubeconfigPath = sh(script: "echo \$KUBECONFIG_CREDENTIALS", returnStdout: true).trim()
+         echo "first command end"
+         echo "second command start"
+         kubernetes(configs: "deployment.yaml service.yaml", kubeconfigPath: kubeconfigPath)
+         echo "second command end"
           }
          //kubernetes(configs: "deployment.yaml service.yaml", kubeconfigId: "kube-credentials")
          //def kubeconfigPath = sh(script: "echo \$KUBECONFIG_CREDENTIALS", returnStdout: true).trim()
