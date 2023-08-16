@@ -68,7 +68,7 @@ pipeline {
     //   }
     // }
 
-stages {
+
         stage('Deploy App with Kubernetes Agent') {
             steps {
                 script {
