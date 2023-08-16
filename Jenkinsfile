@@ -86,7 +86,9 @@ pipeline {
       // Run kubectl commands using the kubeconfig
       echo "available contexts:"
       sh 'kubectl config get-contexts'
-      sh 'kubectl config use-context k3d-one-node-cluster --server=http://localhost:51125 --kubeconfig=$HOME/.kube/config'
+      echo "availa context in pod?????"
+      sh 'kubectl config get-contexts --kubeconfig=/home/jenkins/.kube/config'
+      sh 'kubectl config use-context k3d-one-node-cluster --server=http://localhost:51125 --kubeconfig=/home/jenkins/.kube/config'
       sh 'kubectl apply -f deployment.yaml'
       }
 
