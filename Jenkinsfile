@@ -69,14 +69,17 @@ pipeline {
 
     stage('Apply Kubernetes files') {
       steps{
-    withCredentials([file(credentialsId: 'kube-credentials', variable: 'KUBECONFIG')]) {
-      // Set the KUBECONFIG environment variable to the temporary file path
-      sh "export KUBECONFIG=${KUBECONFIG}"
-      echo "KUBECONFIG value: ${env.KUBECONFIG}"
+        script {
+         kubernetes(configs: "deployment.yaml service.yaml", kubeconfigId: "kube-credentials")
+         }
+    // withCredentials([file(credentialsId: 'kube-credentials', variable: 'KUBECONFIG')]) {
+    //   // Set the KUBECONFIG environment variable to the temporary file path
+    //   sh "export KUBECONFIG=${KUBECONFIG}"
+    //   echo "KUBECONFIG value: ${env.KUBECONFIG}"
 
-      // Run kubectl commands using the kubeconfig
-      sh 'kubectl apply -f deployment.yaml'
-    }
+    //   // Run kubectl commands using the kubeconfig
+    //   sh 'kubectl apply -f deployment.yaml'
+    // }
   }
     }
 
@@ -88,7 +91,7 @@ pipeline {
     //   steps {
         
     //   //   script {
-    //   //     kubernetes(configs: "deployment.yaml service.yaml", kubeconfigId: "kubernetes")
+    //   //     kubernetes(configs: "deployment.yaml service.yaml", kubeconfigId: "kube-credentials")
     //   // }
     //      // kubernetesDeploy(configs: "deployment.yaml", "service.yaml")
          
