@@ -72,11 +72,14 @@ pipeline {
         stage('Deploy App with Kubernetes Agent') {
             steps {
                 script {
-                    kubernetesDeploy(configs: "deployment.yaml", kubeconfigId: "${env.KUBECONFIG}")
+                  container('kubectl'){
+                     withKubeConfig(credentialsId: 'kube-credentials') {
+                        sh 'kubectl apply -f deployment.yaml'
+                    }
                 }
             }
         }
-
+        }
 
 
 
