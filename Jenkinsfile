@@ -79,7 +79,7 @@ pipeline {
       // Set the KUBECONFIG environment variable to the temporary file path
       sh "export KUBECONFIG=${KUBECONFIG}"
       echo "KUBECONFIG value: ${env.KUBECONFIG}"
-      sh "kubectl config set-cluster my-cluster --server=${KUBE_SERVER_URL}"
+      sh "kubectl config set-cluster k3d-one-node-cluster --server=${KUBE_SERVER_URL}"
 
       // Run kubectl commands using the kubeconfig
       
