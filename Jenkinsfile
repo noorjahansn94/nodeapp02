@@ -79,13 +79,13 @@ pipeline {
             
             withCredentials([file(credentialsId: 'kube-credentials', variable: 'KUBECONFIG')]) {
       // Set the KUBECONFIG environment variable to the temporary file path
-      sh "export KUBECONFIG=${KUBECONFIG}"
+      sh "export KUBECONFIG=$HOME/.kube/config"
       echo "KUBECONFIG value: ${env.KUBECONFIG}"
      // sh "kubectl config set-cluster k3d-one-node-cluster --server=${env.KUBE_SERVER_URL}"
 
       // Run kubectl commands using the kubeconfig
       
-      sh 'kubectl config use-context k3d-one-node-cluster --server=http://localhost:51125'
+      sh 'kubectl config use-context k3d-one-node-cluster --server=http://localhost:51125 --kubeconfig=$HOME/.kube/config'
       sh 'kubectl apply -f deployment.yaml'
       }
 
