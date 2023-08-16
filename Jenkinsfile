@@ -8,20 +8,19 @@ pipeline {
  
   }
   //agent any
-  //  agent {
-  //    label 'docker'
-
-  //  }
+   agent {
+     label 'docker'
+  }
   //  tools {
   //       // Define Docker tool installation named 'docker'
   //       dockerTool 'docker'
   //   }
-   agent {
-     kubernetes {
-       label 'docker'
-      // defaultContainer 'jnlp'
-     }
-   }
+  //  agent {
+  //    kubernetes {
+  //      label 'docker'
+  //     // defaultContainer 'jnlp'
+  //    }
+  //  }
 
 
   stages {
