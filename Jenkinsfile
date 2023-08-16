@@ -4,7 +4,7 @@ pipeline {
     dockerimagename = "noorjahansn/nodejsappeg"
     dockerImage = ""
     KUBECONFIG_CREDENTIALS = credentials('kube-credentials')
-    KUBE_SERVER_URL = 'https://localhost:51125'
+    KUBE_SERVER_URL = 'http://localhost:51125'
     // PATH = "${tool name: 'kubectl', type: 'ToolType'}:${env.PATH}"
  
   }
@@ -81,11 +81,11 @@ pipeline {
       // Set the KUBECONFIG environment variable to the temporary file path
       sh "export KUBECONFIG=${KUBECONFIG}"
       echo "KUBECONFIG value: ${env.KUBECONFIG}"
-      sh "kubectl config set-cluster k3d-one-node-cluster --server=${KUBE_SERVER_URL}"
+     // sh "kubectl config set-cluster k3d-one-node-cluster --server=${env.KUBE_SERVER_URL}"
 
       // Run kubectl commands using the kubeconfig
       
-      sh 'kubectl config use-context k3d-one-node-cluster'
+      sh 'kubectl config use-context k3d-one-node-cluster --server=${env.KUBE_SERVER_URL}'
       sh 'kubectl apply -f deployment.yaml'
       }
 
