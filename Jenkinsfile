@@ -3,8 +3,9 @@ pipeline {
   environment {
     dockerimagename = "noorjahansn/nodejsappeg"
     dockerImage = ""
-    KUBECONFIG = credentials('kube-credentials')
+   // KUBECONFIG = credentials('kube-credentials')
     KUBE_SERVER_URL = 'http://localhost:51125'
+    KUBECONFIG = "/var/run/secrets/kubernetes.io/serviceaccount/token"
     // PATH = "${tool name: 'kubectl', type: 'ToolType'}:${env.PATH}"
  
   }
@@ -87,7 +88,8 @@ pipeline {
             steps {
                 script {
                   container('kubectl'){
-                     withKubeConfig(credentialsId: 'kube-credentials') {
+                    // withKubeConfig(credentialsId: 'kube-credentials') {
+                      withCredentials([kubeconfigFile(credentialsId: '6ae336af-71d5-49ee-b60f-1cf49b7ef1c0', variable: 'KUBECONFIG')]) {
                       sh 'kubectl config use-context k3d-one-node-cluster'
                       sh 'kubectl get po'
                       sh 'kubectl apply -f deployment.yaml'
