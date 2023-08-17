@@ -89,10 +89,15 @@ pipeline {
             steps {
                 script {
                   container('kubectl'){
+                   def serviceAccountToken = credentials('6ae336af-71d5-49ee-b60f-1cf49b7ef1c0')
+                    
                     sh """
-                        echo "$KUBE_CREDENTIALS" > /tmp/kubeconfig
-                        kubectl --kubeconfig=/tmp/kubeconfig get pods
+                        kubectl config set-credentials jenkins --token="${serviceAccountToken}"
+                        kubectl config use-context k3d-one-node-cluster
+                        kubectl get pods
                     """
+
+
                     // withKubeConfig(credentialsId: 'kube-credentials') {
                      
                       // sh 'kubectl config use-context k3d-one-node-cluster'
