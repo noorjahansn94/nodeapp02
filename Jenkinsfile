@@ -70,11 +70,11 @@ pipeline {
 
  stage('Deploying App to Kubernetes') {
       steps {
-        
+        container('kubectl'){
         script {
           kubernetes(configs: "deployment.yaml service.yaml", kubeconfigId: "kube-credentials")
       }
-         
+        }  
          
         }
       }
