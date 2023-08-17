@@ -68,20 +68,32 @@ pipeline {
     //   }
     // }
 
+ stage('Deploying App to Kubernetes') {
+      steps {
+        
+        script {
+          kubernetes(configs: "deployment.yaml service.yaml", kubeconfigId: "kube-credentials")
+      }
+         
+         
+        }
+      }
 
-        stage('Deploy App with Kubernetes Agent') {
-            steps {
-                script {
-                  container('kubectl'){
-                     withKubeConfig(credentialsId: 'kube-credentials') {
-                      sh 'kubectl config use-context k3d-one-node-cluster'
-                      sh 'kubectl get po'
-                      sh 'kubectl apply -f deployment.yaml'
-                    }
-                }
-            }
-        }
-        }
+
+
+        // stage('Deploy App with Kubernetes Agent') {
+        //     steps {
+        //         script {
+        //           container('kubectl'){
+        //              withKubeConfig(credentialsId: 'kube-credentials') {
+        //               sh 'kubectl config use-context k3d-one-node-cluster'
+        //               sh 'kubectl get po'
+        //               sh 'kubectl apply -f deployment.yaml'
+        //             }
+        //         }
+        //     }
+        // }
+        // }
 
 
 
@@ -153,16 +165,7 @@ pipeline {
           // sh 'kubectl config use-context k3d-one-node-cluster'
           // sh 'kubectl apply -f deployment.yaml'
           // sh 'kubectl apply -f service.yaml'
-    // stage('Deploying App to Kubernetes') {
-    //   steps {
-        
-    //   //   script {
-    //   //     kubernetes(configs: "deployment.yaml service.yaml", kubeconfigId: "kube-credentials")
-    //   // }
-    //      // kubernetesDeploy(configs: "deployment.yaml", "service.yaml")
-         
-    //     }
-    //   }
+   
   //  }
 
   }
