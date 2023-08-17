@@ -4,10 +4,10 @@ pipeline {
     dockerimagename = "noorjahansn/nodejsappeg"
     dockerImage = ""
    // KUBECONFIG = credentials('kube-credentials')
-    KUBE_SERVER_URL = 'http://localhost:51125'
+   // KUBE_SERVER_URL = 'http://localhost:51125'
     //KUBECONFIG = "/var/run/secrets/kubernetes.io/serviceaccount/token"
     // PATH = "${tool name: 'kubectl', type: 'ToolType'}:${env.PATH}"
-    KUBE_CREDENTIALS = credentials('6ae336af-71d5-49ee-b60f-1cf49b7ef1c0')
+    //KUBE_CREDENTIALS = credentials('6ae336af-71d5-49ee-b60f-1cf49b7ef1c0')
  
   }
   //agent any
