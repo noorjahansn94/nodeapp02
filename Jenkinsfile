@@ -5,8 +5,9 @@ pipeline {
     dockerImage = ""
    // KUBECONFIG = credentials('kube-credentials')
     KUBE_SERVER_URL = 'http://localhost:51125'
-    KUBECONFIG = "/var/run/secrets/kubernetes.io/serviceaccount/token"
+    //KUBECONFIG = "/var/run/secrets/kubernetes.io/serviceaccount/token"
     // PATH = "${tool name: 'kubectl', type: 'ToolType'}:${env.PATH}"
+    KUBE_CREDENTIALS = credentials('6ae336af-71d5-49ee-b60f-1cf49b7ef1c0')
  
   }
   //agent any
@@ -88,11 +89,15 @@ pipeline {
             steps {
                 script {
                   container('kubectl'){
+                    sh """
+                        echo "$KUBE_CREDENTIALS" > /tmp/kubeconfig
+                        kubectl --kubeconfig=/tmp/kubeconfig get pods
+                    """
                     // withKubeConfig(credentialsId: 'kube-credentials') {
-                      withKubeCredentials([file(credentialsId: '6ae336af-71d5-49ee-b60f-1cf49b7ef1c0', variable: 'KUBECONFIG')]) {
-                      sh 'kubectl config use-context k3d-one-node-cluster'
-                      sh 'kubectl get po'
-                      sh 'kubectl apply -f deployment.yaml'
+                     
+                      // sh 'kubectl config use-context k3d-one-node-cluster'
+                      // sh 'kubectl get po'
+                      // sh 'kubectl apply -f deployment.yaml'
                     }
                 }
             }
@@ -173,7 +178,7 @@ pipeline {
   //  }
 
   }
-}
+
 
 
 
