@@ -20,6 +20,7 @@ pipeline {
      kubernetes {
        label 'docker'
       // defaultContainer 'jnlp'
+      serviceAccount 'jenkins'
      }
    }
 
@@ -87,8 +88,6 @@ pipeline {
                 script {
                   container('kubectl'){
                      withKubeConfig(credentialsId: 'kube-credentials') {
-                      TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
-                    sh 'kubectl config set-credentials service-account --token=$TOKEN'
                       sh 'kubectl config use-context k3d-one-node-cluster'
                       sh 'kubectl get po'
                       sh 'kubectl apply -f deployment.yaml'
