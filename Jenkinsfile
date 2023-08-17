@@ -89,7 +89,7 @@ pipeline {
                 script {
                   container('kubectl'){
                     // withKubeConfig(credentialsId: 'kube-credentials') {
-                      withCredentials([kubeconfigFile(credentialsId: '6ae336af-71d5-49ee-b60f-1cf49b7ef1c0', variable: 'KUBECONFIG')]) {
+                      withCredentials([file(credentialsId: '6ae336af-71d5-49ee-b60f-1cf49b7ef1c0', variable: 'KUBECONFIG')]) {
                       sh 'kubectl config use-context k3d-one-node-cluster'
                       sh 'kubectl get po'
                       sh 'kubectl apply -f deployment.yaml'
