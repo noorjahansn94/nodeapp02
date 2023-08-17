@@ -73,7 +73,7 @@ pipeline {
         container('kubectl'){
         script {
           sh 'kubectl config use-context k3d-one-node-cluster'
-          kubernetes(configs: "deployment.yaml service.yaml", kubeconfigId: "kube-credentialsss")
+          kubernetes(configs: "deployment.yaml service.yaml", kubeconfigId: $KUBECONFIG)
       }
         }  
          
