@@ -70,12 +70,11 @@ pipeline {
 
  stage('Deploying App to Kubernetes') {
       steps {
-        container('kubectl'){
+        
         script {
-          sh 'kubectl config use-context k3d-one-node-cluster'
-          kubernetes(configs: "deployment.yaml service.yaml", kubeconfigId: ${env.KUBECONFIG})
+         sh "az login -u hvysakhan@outlook.com -p Khan@1234"
       }
-        }  
+         
          
         }
       }
