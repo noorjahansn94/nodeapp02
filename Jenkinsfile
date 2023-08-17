@@ -68,33 +68,33 @@ pipeline {
     //   }
     // }
 
- stage('Deploying App to Kubernetes') {
-      steps {
+//  stage('Deploying App to Kubernetes') {
+//       steps {
         
-        script {
-          container('az') {
-         sh "az login -u hvysakhan@outlook.com -p Khan@1234"
-      }
-        }
+//         script {
+//           container('az') {
+//          sh "az login -u hvysakhan@outlook.com -p Khan@1234"
+//       }
+//         }
          
+//         }
+//       }
+
+
+
+        stage('Deploy App with Kubernetes Agent') {
+            steps {
+                script {
+                  container('kubectl'){
+                     withKubeConfig(credentialsId: 'kube-credentials') {
+                      sh 'kubectl config use-context k3d-one-node-cluster'
+                      sh 'kubectl get po'
+                      sh 'kubectl apply -f deployment.yaml'
+                    }
+                }
+            }
         }
-      }
-
-
-
-        // stage('Deploy App with Kubernetes Agent') {
-        //     steps {
-        //         script {
-        //           container('kubectl'){
-        //              withKubeConfig(credentialsId: 'kube-credentials') {
-        //               sh 'kubectl config use-context k3d-one-node-cluster'
-        //               sh 'kubectl get po'
-        //               sh 'kubectl apply -f deployment.yaml'
-        //             }
-        //         }
-        //     }
-        // }
-        // }
+        }
 
 
 
