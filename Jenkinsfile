@@ -37,18 +37,18 @@ pipeline {
     }
     
 
-    // stage('Build image') {
-    //   steps{
-    //     script {
-    //       container('dind') {
-    //       sh 'docker info'
-    //        sh 'docker --version'
-    //        sh 'which docker'
-    //       dockerImage = docker.build dockerimagename
-    //       }
-    //     }
-    //   }
-    // }
+    stage('Build image') {
+      steps{
+        script {
+          container('dind') {
+          sh 'docker info'
+           sh 'docker --version'
+           sh 'which docker'
+          dockerImage = docker.build dockerimagename
+          }
+        }
+      }
+    }
 
 
     
@@ -56,20 +56,20 @@ pipeline {
    
     
 
-    // stage('Pushing Image') {
-    //   environment {
-    //            registryCredential = 'dockerhub-credentials'
-    //        }
-    //   steps{
-    //     script {
-    //       container('dind') {
-    //       docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
-    //         dockerImage.push("v1")
-    //       }
-    //       }
-    //     }
-    //   }
-    // }
+    stage('Pushing Image') {
+      environment {
+               registryCredential = 'dockerhub-credentials'
+           }
+      steps{
+        script {
+          container('dind') {
+          docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
+            dockerImage.push("v2")
+          }
+          }
+        }
+      }
+    }
 
 //  stage('Deploying App to Kubernetes') {
 //       steps {
