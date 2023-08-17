@@ -94,6 +94,7 @@ pipeline {
                     sh """
                         kubectl config get-contexts
                         kubectl config set-credentials jenkins --token="${serviceAccountToken}"
+                        kubectl config set-context k3d-one-node-cluster --cluster=cluster --user=jenkins
                         kubectl config use-context k3d-one-node-cluster
                         kubectl get pods
                     """
