@@ -72,9 +72,10 @@ pipeline {
       steps {
         
         script {
+          container('az') {
          sh "az login -u hvysakhan@outlook.com -p Khan@1234"
       }
-         
+        }
          
         }
       }
