@@ -93,6 +93,8 @@ pipeline {
                   echo "Service Account Token: ${serviceAccountToken}"
                   sh """
                       kubectl --token=${serviceAccountToken} get pods
+                      kubectl --token=${serviceAccountToken} apply -f deployment.yaml
+
                     """
 
                   //  def serviceAccountToken = credentials('6ae336af-71d5-49ee-b60f-1cf49b7ef1c0')
