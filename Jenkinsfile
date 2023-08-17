@@ -92,6 +92,7 @@ pipeline {
                    def serviceAccountToken = credentials('6ae336af-71d5-49ee-b60f-1cf49b7ef1c0')
                     
                     sh """
+                        kubectl config get-contexts
                         kubectl config set-credentials jenkins --token="${serviceAccountToken}"
                         kubectl config use-context k3d-one-node-cluster
                         kubectl get pods
