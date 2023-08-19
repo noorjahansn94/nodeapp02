@@ -3,6 +3,7 @@ pipeline {
   environment {
     dockerimagename = "noorjahansn/nodejsappeg"
     dockerImage = ""
+    registryCredential = 'dockerhub-credentials'
    // KUBECONFIG = credentials('kube-credentials')
    // KUBE_SERVER_URL = 'http://localhost:51125'
     //KUBECONFIG = "/var/run/secrets/kubernetes.io/serviceaccount/token"
@@ -59,9 +60,9 @@ pipeline {
     
 
     stage('Pushing Image') {
-      environment {
-               registryCredential = 'dockerhub-credentials'
-           }
+      // environment {
+      //          registryCredential = 'dockerhub-credentials'
+      //      }
       steps{
         script {
           container('dind') {
