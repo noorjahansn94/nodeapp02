@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: nodejs-app
-        image: noorjahansn/nodejsappeg:v2
+        image: noorjahansn/nodejsappeg:IMAGE_VERSION_PLACEHOLDER
         ports:
         - containerPort: 3000
