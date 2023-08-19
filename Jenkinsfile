@@ -69,8 +69,8 @@ pipeline {
           container('dind') {
           docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
            
-          dockerImage.push("${pipelineName}_v${env.BUILD_NUMBER}")
-          def imageVersion = "${pipelineName}_v${env.BUILD_NUMBER}"
+          dockerImage.push("${env.pipelineName}_v${env.BUILD_NUMBER}")
+          def imageVersion = "${env.pipelineName}_v${env.BUILD_NUMBER}"
           sh "sed -i 's#IMAGE_VERSION_PLACEHOLDER#${imageVersion}#g' deployment.yaml"
 
           }
