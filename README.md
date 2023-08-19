@@ -23,17 +23,44 @@ A concise description of what this Jenkins project is about, its purpose, and it
 2. Helm installed in your machine
 3. Docker desktop installed in your machine
 
-## Getting Started
+## Install Helm
 
-- Installation steps
-1. Pull helm repo for jenkins
-2. Install helm chart for jenkins in the cluster
-   ```shell
-   helm install my-release ./jenkins
-   ```
-- Setup and configuration details
+In this lab, you will use Helm to install Jenkins with a stable _chart_.  Helm
+is a package manager that makes it easy to configure and deploy Kubernetes
+applications.  Once you have Jenkins installed, you'll be able to set up your
+CI/CD pipleline.
 
-You can use code snippets, commands, and explanations to guide users through the setup process.
+1. Download and install the helm binary
+
+    ```shell
+    wget https://get.helm.sh/helm-v3.2.1-linux-amd64.tar.gz
+    ```
+
+1. Unzip the file to your local system:
+
+    ```shell
+    tar zxfv helm-v3.2.1-linux-amd64.tar.gz
+    cp linux-amd64/helm .
+    ```
+
+1. Add the official stable repository.
+
+    ```shell
+    ./helm repo add stable https://kubernetes-charts.storage.googleapis.com
+    ```
+
+1. Ensure Helm is properly installed by running the following command. You
+   should see version `v3.2.1` appear:
+
+    ```shell
+    ./helm version
+    ```
+
+    Output (do not copy):
+
+    ```output
+    version.BuildInfo{Version:"v3.2.1", GitCommit:"fe51cd1e31e6a202cba7dead9552a6d418ded79a", GitTreeState:"clean", GoVersion:"go1.13.10"}
+    ```
 
 ## Usage
 
