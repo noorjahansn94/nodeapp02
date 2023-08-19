@@ -70,7 +70,7 @@ pipeline {
           container('dind') {
           docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
           def imageVersion = "${env.JOB_NAME}_v${env.BUILD_NUMBER}"
-          dockerImage.push(${imageVersion})
+          dockerImage.push("${imageVersion}")
          // dockerImage.push("${env.pipelineName}_v${env.BUILD_NUMBER}")
          // def pipelineName = env.JOB_NAME.tokenize('/')[1]
           
