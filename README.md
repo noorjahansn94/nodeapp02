@@ -1,12 +1,13 @@
-# Project Name
+# Deploying application in Kubernetes using Jenkins
 
 [![Build Status](https://jenkins.example.com/buildStatus/icon?job=Your-Job-Name)](https://jenkins.example.com/job/Your-Job-Name/)
 
-Brief description of your Jenkins project.
+This project includes example demo for deploying an app in kubernetes using Jenkins
 
 ## Table of Contents
 
 - [Overview](#overview)
+- [Prerequisites](#prerequisites)
 - [Getting Started](#getting-started)
 - [Usage](#usage)
 - [Configuration](#configuration)
@@ -16,6 +17,11 @@ Brief description of your Jenkins project.
 ## Overview
 
 A concise description of what this Jenkins project is about, its purpose, and its benefits. You can include any relevant context here.
+
+## Prerequisites
+1. Kubernetes cluster (K3D used in this project)
+2. Helm installed in your machine
+3. Docker desktop installed in your machine
 
 ## Getting Started
 
