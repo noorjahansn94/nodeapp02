@@ -25,10 +25,12 @@ A concise description of what this Jenkins project is about, its purpose, and it
 
 ## Getting Started
 
-Provide instructions for getting started with your Jenkins project. Include information such as:
-
-- Prerequisites (Jenkins version, plugins, dependencies)
 - Installation steps
+1. Pull helm repo for jenkins
+2. Install helm chart for jenkins in the cluster
+   ```shell
+   helm install my-release ./jenkins
+   ```
 - Setup and configuration details
 
 You can use code snippets, commands, and explanations to guide users through the setup process.
