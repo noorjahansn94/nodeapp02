@@ -5,8 +5,9 @@ metadata:
 spec:
   selector:
     app: nodejs-app
-  type: LoadBalancer
+  type: NodePort
   ports:
   - protocol: TCP
     port: 3000
     targetPort: 3000
+    nodePort: 30000 
