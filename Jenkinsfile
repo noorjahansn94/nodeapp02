@@ -4,6 +4,7 @@ pipeline {
     dockerimagename = "noorjahansn/nodejsappeg"
     dockerImage = ""
     registryCredential = 'dockerhub-credentials'
+    imageVersion = "${env.JOB_NAME}_v${env.BUILD_NUMBER}"
    // pipelineName = env.JOB_NAME.tokenize('/')[1]
    // pipelineName = ${env.JOB_NAME}.tokenize('/')[1]
    // KUBECONFIG = credentials('kube-credentials')
@@ -69,8 +70,8 @@ pipeline {
         script {
           container('dind') {
           docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
-          def imageVersion = "${env.JOB_NAME}_v${env.BUILD_NUMBER}"
-          dockerImage.push("${imageVersion}")
+         // def imageVersion = "${env.JOB_NAME}_v${env.BUILD_NUMBER}"
+          dockerImage.push(imageVersion)
          // dockerImage.push("${env.pipelineName}_v${env.BUILD_NUMBER}")
          // def pipelineName = env.JOB_NAME.tokenize('/')[1]
           
