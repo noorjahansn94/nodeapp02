@@ -59,7 +59,6 @@ pipeline {
                       kubectl --token=${serviceAccountToken} get pods
                       kubectl --token=${serviceAccountToken} apply -f deployment.yaml
                       kubectl --token=${serviceAccountToken} apply -f service.yaml
-
                     """
                     }
                 }
