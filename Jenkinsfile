@@ -34,7 +34,7 @@ pipeline {
          
       //  git 'https://github.com/noorjahansn94/nodeapp02.git'
       git branch: 'main', url: 'https://github.com/noorjahansn94/nodeapp02.git'
-      echo "build num : ${env.BUILD_NUMBER}"
+      
       }
     }
     
@@ -67,7 +67,7 @@ pipeline {
           container('dind') {
           docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
            
-          dockerImage.push("${env.BUILD_NUMBER}")
+          dockerImage.push("v_${env.BUILD_NUMBER}")
 
           }
           }
