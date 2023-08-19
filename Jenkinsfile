@@ -6,7 +6,7 @@ pipeline {
     registryCredential = 'dockerhub-credentials'
     imageVersion = "${env.JOB_NAME}_v${env.BUILD_NUMBER}"
   }
-  
+
   agent any
  
 
@@ -49,7 +49,7 @@ pipeline {
 
 
 
-        stage('Deploy App with Kubernetes Agent') {
+        stage('Deploy App') {
             steps {
                 script {
                   container('kubectl'){
@@ -61,8 +61,6 @@ pipeline {
                       kubectl --token=${serviceAccountToken} apply -f service.yaml
 
                     """
-
-                  
                     }
                 }
             }
