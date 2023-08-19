@@ -5,38 +5,15 @@ pipeline {
     dockerImage = ""
     registryCredential = 'dockerhub-credentials'
     imageVersion = "${env.JOB_NAME}_v${env.BUILD_NUMBER}"
-   // pipelineName = env.JOB_NAME.tokenize('/')[1]
-   // pipelineName = ${env.JOB_NAME}.tokenize('/')[1]
-   // KUBECONFIG = credentials('kube-credentials')
-   // KUBE_SERVER_URL = 'http://localhost:51125'
-    //KUBECONFIG = "/var/run/secrets/kubernetes.io/serviceaccount/token"
-    // PATH = "${tool name: 'kubectl', type: 'ToolType'}:${env.PATH}"
-    //KUBE_CREDENTIALS = credentials('6ae336af-71d5-49ee-b60f-1cf49b7ef1c0')
- 
   }
+  
   agent any
-  //  agent {
-  //    label 'docker'
-  // }
-  //  tools {
-  //       // Define Docker tool installation named 'docker'
-  //       dockerTool 'docker'
-  //   }
-  //  agent {
-  //    kubernetes {
-  //      label 'docker'
-  //     // defaultContainer 'jnlp'
-  //     serviceAccount 'jenkins'
-  //    }
-  //  }
-
+ 
 
   stages {
 
     stage('Checkout Source') {
       steps {
-         
-      //  git 'https://github.com/noorjahansn94/nodeapp02.git'
       git branch: 'main', url: 'https://github.com/noorjahansn94/nodeapp02.git'
       
       }
@@ -49,32 +26,19 @@ pipeline {
           container('dind') {
           // sh 'docker info'
           //  sh 'docker --version'
-          //  sh 'which docker'
           dockerImage = docker.build dockerimagename
           }
         }
       }
     }
 
-
-    
-
-   
-    
-
     stage('Pushing Image') {
-      // environment {
-      //          registryCredential = 'dockerhub-credentials'
-      //      }
       steps{
         script {
           container('dind') {
           docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
          // def imageVersion = "${env.JOB_NAME}_v${env.BUILD_NUMBER}"
           dockerImage.push(imageVersion)
-         // dockerImage.push("${env.pipelineName}_v${env.BUILD_NUMBER}")
-         // def pipelineName = env.JOB_NAME.tokenize('/')[1]
-          
           sh "sed -i 's#IMAGE_VERSION_PLACEHOLDER#${imageVersion}#g' deployment.yaml"
 
           }
@@ -108,5 +72,14 @@ pipeline {
 
   }
 
-
+ //  agent {
+  //    label 'docker'
+  // }
+  
+  //  agent {
+  //    kubernetes {
+  //      label 'docker'
+  //     // defaultContainer 'jnlp'
+  //    }
+  //  }
 
