@@ -75,7 +75,7 @@ pipeline {
          // dockerImage.push("${env.pipelineName}_v${env.BUILD_NUMBER}")
          // def pipelineName = env.JOB_NAME.tokenize('/')[1]
           
-          sh "sed -i 's#IMAGE_VERSION_PLACEHOLDER#${imageVersion}#g' deployment.yaml"
+         // sh "sed -i 's#IMAGE_VERSION_PLACEHOLDER#${imageVersion}#g' deployment.yaml"
 
           }
           }
