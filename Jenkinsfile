@@ -67,7 +67,7 @@ pipeline {
           container('dind') {
           docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
            
-          dockerImage.push("v_${env.BUILD_NUMBER}")
+          dockerImage.push("v${env.BUILD_NUMBER}")
 
           }
           }
