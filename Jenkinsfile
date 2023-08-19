@@ -4,6 +4,7 @@ pipeline {
     dockerimagename = "noorjahansn/nodejsappeg"
     dockerImage = ""
     registryCredential = 'dockerhub-credentials'
+    pipelineName = ${env.JOB_NAME}.tokenize('/')[1]
    // KUBECONFIG = credentials('kube-credentials')
    // KUBE_SERVER_URL = 'http://localhost:51125'
     //KUBECONFIG = "/var/run/secrets/kubernetes.io/serviceaccount/token"
@@ -68,8 +69,8 @@ pipeline {
           container('dind') {
           docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
            
-          dockerImage.push("v${env.BUILD_NUMBER}")
-          def imageVersion = "v${env.BUILD_NUMBER}"
+          dockerImage.push("${pipelineName}_v${env.BUILD_NUMBER}")
+          def imageVersion = "${pipelineName}_v${env.BUILD_NUMBER}"
           sh "sed -i 's#IMAGE_VERSION_PLACEHOLDER#${imageVersion}#g' deployment.yaml"
 
           }
