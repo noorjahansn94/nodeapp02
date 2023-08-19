@@ -14,7 +14,7 @@ pipeline {
     //KUBE_CREDENTIALS = credentials('6ae336af-71d5-49ee-b60f-1cf49b7ef1c0')
  
   }
-  //agent any
+  agent any
   //  agent {
   //    label 'docker'
   // }
@@ -22,13 +22,13 @@ pipeline {
   //       // Define Docker tool installation named 'docker'
   //       dockerTool 'docker'
   //   }
-   agent {
-     kubernetes {
-       label 'docker'
-      // defaultContainer 'jnlp'
-      serviceAccount 'jenkins'
-     }
-   }
+  //  agent {
+  //    kubernetes {
+  //      label 'docker'
+  //     // defaultContainer 'jnlp'
+  //     serviceAccount 'jenkins'
+  //    }
+  //  }
 
 
   stages {
