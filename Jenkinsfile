@@ -4,6 +4,7 @@ pipeline {
     dockerimagename = "noorjahansn/nodejsappeg"
     dockerImage = ""
     registryCredential = 'dockerhub-credentials'
+    pipelineName = env.JOB_NAME.tokenize('/')[1]
    // pipelineName = ${env.JOB_NAME}.tokenize('/')[1]
    // KUBECONFIG = credentials('kube-credentials')
    // KUBE_SERVER_URL = 'http://localhost:51125'
@@ -70,7 +71,7 @@ pipeline {
           docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
            
           dockerImage.push("${env.pipelineName}_v${env.BUILD_NUMBER}")
-          def pipelineName = ${env.JOB_NAME}.tokenize('/')[1]
+          def pipelineName = env.JOB_NAME.tokenize('/')[1]
           def imageVersion = "${pipelineName}_v${env.BUILD_NUMBER}"
           sh "sed -i 's#IMAGE_VERSION_PLACEHOLDER#${imageVersion}#g' deployment.yaml"
 
