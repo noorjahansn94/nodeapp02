@@ -31,8 +31,10 @@ pipeline {
 
     stage('Checkout Source') {
       steps {
+         
       //  git 'https://github.com/noorjahansn94/nodeapp02.git'
       git branch: 'main', url: 'https://github.com/noorjahansn94/nodeapp02.git'
+      echo "build num : ${env.BUILD_NUMBER}"
       }
     }
     
@@ -64,7 +66,9 @@ pipeline {
         script {
           container('dind') {
           docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
-            dockerImage.push("version ${env.BUILD_NUMBER}")
+           
+          dockerImage.push("version ${env.BUILD_NUMBER}")
+
           }
           }
         }
