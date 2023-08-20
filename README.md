@@ -52,17 +52,16 @@ CI/CD pipleline.
 
 Inorder to run the docker commands and kubectl commands, we need to modify the helm chart to include additional two containers: One container with docker:dind image to run docker commands and another with bitnami/kubectl image to run kubectl commands. Modify the helm chart values by adding the following to values.yaml file:
 
- ```shell 
+  
   # Add additional containers to the agents.
   # Containers specified here are added to all agents. Set key empty to remove container from additional agents.
+  ```shell
   additionalContainers: 
     - sideContainerName: dind
       image: docker
       tag: dind
       command: dockerd-entrypoint.sh
       args: "--host=unix:///var/run/docker.sock"
-      #command: "/bin/sh -c"
-      #args: "apt-get update && apt-get install -y kubectl"
       privileged: true
       resources:
         requests:
@@ -75,12 +74,7 @@ Inorder to run the docker commands and kubectl commands, we need to modify the h
       image: bitnami/kubectl
       tag: latest
       args: "infinity"
-      #command: dockerd-entrypoint.sh
       command: "sleep"
-      #command:
-      #  - kubectl
-      #  - proxy
-      #args: '--address=0.0.0.0 --port=51125'
       resources:
         requests:
           cpu: 500m
@@ -91,7 +85,7 @@ Inorder to run the docker commands and kubectl commands, we need to modify the h
      ```
 
 ## Configure and Install Jenkins
-
+addd
 
 ## Usage
 
