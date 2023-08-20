@@ -25,9 +25,9 @@ A concise description of what this Jenkins project is about, its purpose, and it
 
 ## Install Helm
 
-In this lab, you will use Helm to install Jenkins with a stable _chart_.  Helm
+In this lab, we will use Helm to install Jenkins .  Helm
 is a package manager that makes it easy to configure and deploy Kubernetes
-applications.  Once you have Jenkins installed, you'll be able to set up your
+applications.  Once we have Jenkins installed, we'll be able to set up our
 CI/CD pipleline.
 
 1. Install helm
