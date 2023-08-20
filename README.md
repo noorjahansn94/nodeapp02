@@ -1,9 +1,5 @@
 # Deploying application in Kubernetes using Jenkins
 
-[![Build Status](https://jenkins.example.com/buildStatus/icon?job=Your-Job-Name)](https://jenkins.example.com/job/Your-Job-Name/)
-
-This project includes example demo for deploying an app in kubernetes using Jenkins
-
 <!-- ## Table of Contents
 
 - [Overview](#overview)
@@ -16,7 +12,7 @@ This project includes example demo for deploying an app in kubernetes using Jenk
 
 ## Overview
 
-A concise description of what this Jenkins project is about, its purpose, and its benefits. You can include any relevant context here.
+This guide will take you through the steps necessary to build and deploy an application in Kubernetes using Jenkins
 
 ## Prerequisites
 1. Kubernetes cluster (K3D used in this project)
@@ -166,13 +162,22 @@ We will add the  Docker Hub credentials to the Jenkins Credentials manager using
 4. Deploy the containerized application to the Kubernetes cluster. 
 
 ## Accessing the Deployed Containerized Application
-We will use the Kubernetes Service to access the node.js application container from outside the Kubernetes cluster. To get the Kubernetes Service, run this command:
+We will use the Kubernetes Service to access the node.js application container from outside the Kubernetes cluster.
+1. To get the Kubernetes Service, run this command:
 ```shell
 kubectl get service
 ```
-We will then run the following command to get the URL:
-fill here
-portforward fill here
+```output
+service   NodePort    10.43.122.167   <none>  3000:30000/TCP   2d14h 
+```
 
-Copy the URL and paste it into your browser to access the deployed containerized application (node.js application)
+2. Use port forwarding in your local machine using the following command:
+```shell
+kubectl port-forward service/service 3000:3000
+```
+3. Use the following URL in your browser to access the application:
+```shell
+http://127.0.0.1:3000
+```
+
 
