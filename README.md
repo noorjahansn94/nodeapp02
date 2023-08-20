@@ -43,8 +43,11 @@ CI/CD pipleline.
     ```shell
     helm version
     ```
-
-3. Pull official helm repository into a folder.
+3. Create a directory to save the helm repo:
+ ```shell
+    mkdir helm-release
+ ```
+3. Pull official helm repository into the `helm-release` directory.
 
     ```shell
     helm pull jenkins/jenkins
@@ -84,7 +87,7 @@ Inorder to run the docker commands and kubectl commands, we need to modify the h
           memory: 2Gi
   ```
 ## Create a Service Account with permissions
-1. In order to access the kubernetes cluster from the jenkins pod, a service account is needed. Modify the helm chart values.yaml by adding the following in the serviceAccountAgent section:
+1. In order to access the kubernetes cluster from the jenkins pod, a service account is needed. Modify the helm chart `values.yaml` by adding the following in the serviceAccountAgent section:
   ```shell
   serviceAccountAgent:
   create: true
@@ -93,16 +96,10 @@ Inorder to run the docker commands and kubectl commands, we need to modify the h
   extraLabels: {}
   imagePullSecretName:
   ```
-2. Permissions to this service account must be added to rbac.yaml file in the helm chart. Only then we will be able to apply the deployments and services inside the cluster. Add the following in the rules section of jenkins\templates\rbac.yaml file:
+2. Permissions to this service account must be added to rbac.yaml file in the helm chart. Only then we will be able to apply the deployments and services inside the cluster. Add the following in the rules section of `jenkins\templates\rbac.yaml` file:
 
   ```shell
   rules:
-- apiGroups: [""]
-  resources: ["pods", "pods/exec", "pods/log", "persistentvolumeclaims", "events"]
-  verbs: ["get", "list", "watch"]
-- apiGroups: [""]
-  resources: ["pods", "pods/exec", "persistentvolumeclaims"]
-  verbs: ["create", "delete", "deletecollection", "patch", "update"]
 - apiGroups: ["apps"]
   resources: ["deployments"]
   verbs: ["create", "get", "list", "update", "delete", "patch"]
@@ -111,7 +108,7 @@ Inorder to run the docker commands and kubectl commands, we need to modify the h
   verbs: ["create", "get", "list", "update", "delete","patch"]
   ```  
 
-3. Install the helm chart from the directory:
+3. Go to the `helm-release` directory. Install the helm chart by running the following command where `my-release` is the name for helm release and `./jenkins` is the path to the Helm chart directory that we're installing:
 ```shell
 helm install my-release ./jenkins
 ```
@@ -154,7 +151,7 @@ We will add the  Docker Hub credentials to the Jenkins Credentials manager using
  10. To build the Pipeline, click 'Build Now'
  11. To get the Pipeline output, click 'Console Ouput'
 
- The Jenkins CI/CD pipeline outputs a ‘SUCCESS’ message. The Jenkins CI/CD pipeline was able to: 
+ The Jenkins CI/CD pipeline outputs a 'SUCCESS' message. The Jenkins CI/CD pipeline was able to: 
 1. Build the Docker image.
 2. Push the Docker image to Docker Hub.
 3. Pull the Docker image from the Docker Hub repository and create a containerized application.
