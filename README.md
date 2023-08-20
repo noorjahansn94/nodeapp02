@@ -4,7 +4,7 @@
 
 This project includes example demo for deploying an app in kubernetes using Jenkins
 
-## Table of Contents
+<!-- ## Table of Contents
 
 - [Overview](#overview)
 - [Prerequisites](#prerequisites)
@@ -12,7 +12,7 @@ This project includes example demo for deploying an app in kubernetes using Jenk
 - [Usage](#usage)
 - [Configure and Install Jenkins](#Configure-and-Install-Jenkins)
 - [Contributing](#contributing)
-- [License](#license)
+- [License](#license) -->
 
 ## Overview
 
@@ -49,12 +49,8 @@ CI/CD pipleline.
     helm version
     ```
 ## Modify the helm chart
+1. Inorder to run the docker commands and kubectl commands, we need to modify the helm chart to include additional two containers: One container with docker:dind image to run docker commands and another with bitnami/kubectl image to run kubectl commands. Modify the helm chart values by adding the following to values.yaml file:
 
-Inorder to run the docker commands and kubectl commands, we need to modify the helm chart to include additional two containers: One container with docker:dind image to run docker commands and another with bitnami/kubectl image to run kubectl commands. Modify the helm chart values by adding the following to values.yaml file:
-
-  
-  # Add additional containers to the agents.
-  # Containers specified here are added to all agents. Set key empty to remove container from additional agents.
   ```shell
   additionalContainers: 
     - sideContainerName: dind
@@ -83,45 +79,4 @@ Inorder to run the docker commands and kubectl commands, we need to modify the h
           cpu: 1
           memory: 2Gi
      ```
-
-## Configure and Install Jenkins
-addd
-
-## Usage
-
-Explain how to use your Jenkins project. This might include:
-
-- How to trigger the Jenkins job
-- Any parameters or input required
-- Expected outputs and behavior
-- Relevant screenshots or diagrams
-
-Remember to provide clear and concise instructions to make it easy for users to understand and utilize your project.
-
-## Configuration
-
-If there are any specific configurations or customization options, explain them in this section. You can cover topics like:
-
-- Environment variables
-- Jenkinsfile structure
-- Custom pipelines and stages
-
-Make sure to include examples and explanations for better clarity.
-
-## Contributing
-
-Explain how others can contribute to your Jenkins project. Include:
-
-- Guidelines for submitting issues and pull requests
-- Contribution requirements (e.g., coding standards, tests)
-- How to set up a development environment
-
-Encourage collaboration and make it easy for others to contribute effectively.
-
-## License
-
-Specify the license under which your Jenkins project is distributed. You can use the GitHub license badge to provide a quick link to the full license text.
-
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-
-© [Your Name or Organization]
+## Modify the helm chart
