@@ -144,7 +144,7 @@ We will add the  Docker Hub credentials to the Jenkins Credentials manager using
  2. Click 'Manage Credentials'. Click ‘Add Credentials’.
  3. Add Docker Hub username and password and click 'Create' button
 
- ## Create Pipeline
+ ### Create Pipeline
  We'll now use Jenkins to define and run a pipeline that will  build and and deploy the nodejs app to Kubernetes cluster.
  To create a pipeline, follow the steps:
  1. Open the Jenkins Dashboard and Click 'New Item'.
