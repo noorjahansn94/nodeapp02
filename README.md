@@ -163,6 +163,8 @@ We will use the Kubernetes Service to access the node.js application container f
 ```shell
 kubectl get service
 ```
+output:
+
 ```output
 service   NodePort    10.43.122.167   <none>  3000:30000/TCP   2d14h 
 ```
