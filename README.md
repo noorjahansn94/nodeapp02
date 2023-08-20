@@ -52,7 +52,7 @@ CI/CD pipleline.
 
 Inorder to run the docker commands and kubectl commands, we need to modify the helm chart to include additional two containers: One container with docker:dind image to run docker commands and another with bitnami/kubectl image to run kubectl commands. Modify the helm chart values by adding the following to values.yaml file:
 
-1. ```shell 
+ ```shell 
   # Add additional containers to the agents.
   # Containers specified here are added to all agents. Set key empty to remove container from additional agents.
   additionalContainers: 
