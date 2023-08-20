@@ -49,7 +49,8 @@ CI/CD pipleline.
     helm version
     ```
 ## Modify the helm chart
-1. Inorder to run the docker commands and kubectl commands, we need to modify the helm chart to include additional two containers: One container with docker:dind image to run docker commands and another with bitnami/kubectl image to run kubectl commands. Modify the helm chart values by adding the following to values.yaml file:
+
+Inorder to run the docker commands and kubectl commands, we need to modify the helm chart to include additional two containers: One container with docker:dind image to run docker commands and another with bitnami/kubectl image to run kubectl commands. Modify the helm chart values by adding the following to values.yaml file:
 
   ```shell
   additionalContainers: 
@@ -78,5 +79,15 @@ CI/CD pipleline.
         limits:
           cpu: 1
           memory: 2Gi
-     ```
-## Modify the helm chart
+  ```
+## Create a Service Account with permissions
+In order to access the kubernetes cluster from the jenkins pod, a service account is needed. Modify the helm chart values.yaml by adding the following in the serviceAccountAgent section:
+  ```shell
+  serviceAccountAgent:
+  create: true
+  name: testsc   #service account name
+  annotations: {}
+  extraLabels: {}
+  imagePullSecretName:
+  ```
+
