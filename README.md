@@ -37,17 +37,58 @@ CI/CD pipleline.
     ```
 
 
-2. Pull official helm repository.
+2. Pull official helm repository into a folder.
 
     ```shell
     helm pull jenkins/jenkins
     ```
-
-3. Ensure Helm is properly installed by running the following command. 
+3. jenkins-4.5.0.tgz will be downloaded and extract this downloaded file to get Jenkins folder in which it   contains the helm chart
+4. Ensure Helm is properly installed by running the following command. 
 
     ```shell
     helm version
     ```
+## Modify the helm chart
+
+Inorder to run the docker commands and kubectl commands, we need to modify the helm chart to include additional two containers: One container with docker:dind image to run docker commands and another with bitnami/kubectl image to run kubectl commands. Modify the helm chart values by adding the following to values.yaml file:
+
+1. ```shell 
+  # Add additional containers to the agents.
+  # Containers specified here are added to all agents. Set key empty to remove container from additional agents.
+  additionalContainers: 
+    - sideContainerName: dind
+      image: docker
+      tag: dind
+      command: dockerd-entrypoint.sh
+      args: "--host=unix:///var/run/docker.sock"
+      #command: "/bin/sh -c"
+      #args: "apt-get update && apt-get install -y kubectl"
+      privileged: true
+      resources:
+        requests:
+          cpu: 500m
+          memory: 0.5Gi
+        limits:
+          cpu: 1
+          memory: 2Gi
+    - sideContainerName: kubectl
+      image: bitnami/kubectl
+      tag: latest
+      args: "infinity"
+      #command: dockerd-entrypoint.sh
+      command: "sleep"
+      #command:
+      #  - kubectl
+      #  - proxy
+      #args: '--address=0.0.0.0 --port=51125'
+      resources:
+        requests:
+          cpu: 500m
+          memory: 0.5Gi
+        limits:
+          cpu: 1
+          memory: 2Gi
+     ```
 
 ## Configure and Install Jenkins
 
