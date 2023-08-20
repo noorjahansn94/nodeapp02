@@ -10,7 +10,7 @@ This project includes example demo for deploying an app in kubernetes using Jenk
 - [Prerequisites](#prerequisites)
 - [Getting Started](#getting-started)
 - [Usage](#usage)
-- [Configuration](#configuration)
+- [Configure and Install Jenkins](#Configure-and-Install-Jenkins)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -30,37 +30,27 @@ is a package manager that makes it easy to configure and deploy Kubernetes
 applications.  Once you have Jenkins installed, you'll be able to set up your
 CI/CD pipleline.
 
-1. Download and install the helm binary
+1. Install helm
 
     ```shell
-    wget https://get.helm.sh/helm-v3.2.1-linux-amd64.tar.gz
+    choco install kubernetes-helm
     ```
 
-1. Unzip the file to your local system:
+
+2. Pull official helm repository.
 
     ```shell
-    tar zxfv helm-v3.2.1-linux-amd64.tar.gz
-    cp linux-amd64/helm .
+    helm pull jenkins/jenkins
     ```
 
-1. Add the official stable repository.
+3. Ensure Helm is properly installed by running the following command. 
 
     ```shell
-    ./helm repo add stable https://kubernetes-charts.storage.googleapis.com
+    helm version
     ```
 
-1. Ensure Helm is properly installed by running the following command. You
-   should see version `v3.2.1` appear:
+## Configure and Install Jenkins
 
-    ```shell
-    ./helm version
-    ```
-
-    Output (do not copy):
-
-    ```output
-    version.BuildInfo{Version:"v3.2.1", GitCommit:"fe51cd1e31e6a202cba7dead9552a6d418ded79a", GitTreeState:"clean", GoVersion:"go1.13.10"}
-    ```
 
 ## Usage
 
