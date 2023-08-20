@@ -121,7 +121,7 @@ Inorder to run the docker commands and kubectl commands, we need to modify the h
 helm install my-release ./jenkins
 ```
 4. The following credentials are used to login to Jenkins:
- username: admin
+ username: `admin`
  To get password, run the following command:
  ```shell
  kubectl exec --namespace default -it svc/my-jenkins-eg -c jenkins -- /bin/cat /run/secrets/additional/chart-admin-password && echo
@@ -131,3 +131,16 @@ helm install my-release ./jenkins
 kubectl --namespace default port-forward svc/my-release-jenkins 8080:8080
 ```
 6. Open http://127.0.0.1:8080 in the browser, give the credentials from step 4 and login to jenkins UI.
+
+## The sample app deployment to kubernetes
+We'll use a very simple nodejs application for this demo. The dockerfile for the app is located in this repo that can create an image out of the nodejs app. The Jenkinsfile which is written to build the image and deploy it to kubernetes is also placed in the same repo. 
+## Create a pipeline
+ We'll now use Jenkins to define and run a pipeline that will  build and and deploy the nodejs app to Kubernetes cluster.
+1. Install docker pipeline plugin
+  In the Jenkins UI, Go to manage jenkins. Next, click 'Manage Plugins'. Search for Docker Pipeline. Then click the 'Install without restart button':
+2. Add Credentials to Jenkins Credentials Manager
+We will add the  Docker Hub credentials to the Jenkins Credentials manager using the following steps:
+ 1. Go back to the Jenkins Dashboard and click 'Manage Jenkins'.
+ 2. Click 'Manage Credentials'. Click ‘Add Credentials’.
+ 3. Add Docker Hub username and password and click 'Create' button
+
