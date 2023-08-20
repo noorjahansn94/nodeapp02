@@ -133,9 +133,9 @@ kubectl --namespace default port-forward svc/my-release-jenkins 8080:8080
 6. Open http://127.0.0.1:8080 in the browser, give the credentials from step 4 and login to jenkins UI.
 
 ## The sample app deployment to kubernetes
-We'll use a very simple nodejs application for this demo. The dockerfile for the app is located in this repo that can create an image out of the nodejs app. The Jenkinsfile which is written to build the image and deploy it to kubernetes is also placed in the same repo. 
-## Create a pipeline
- We'll now use Jenkins to define and run a pipeline that will  build and and deploy the nodejs app to Kubernetes cluster.
+We'll use a very simple nodejs application for this demo. The dockerfile for the app is located in this repo that can create an image out of the nodejs app. The Jenkinsfile which is written to build the image and deploy it to kubernetes is also placed in the same repo. A Kubernetes Service Deployment YAML file and service YAML file is created and placed in the repo.  We will use the Kubernetes Service to access the node.js application container from outside the Kubernetes cluster. 
+## Jenkins Configuration
+ 
 1. Install docker pipeline plugin
   In the Jenkins UI, Go to manage jenkins. Next, click 'Manage Plugins'. Search for Docker Pipeline. Then click the 'Install without restart button':
 2. Add Credentials to Jenkins Credentials Manager
@@ -143,4 +143,31 @@ We will add the  Docker Hub credentials to the Jenkins Credentials manager using
  1. Go back to the Jenkins Dashboard and click 'Manage Jenkins'.
  2. Click 'Manage Credentials'. Click ‘Add Credentials’.
  3. Add Docker Hub username and password and click 'Create' button
+
+ ## Create Pipeline
+ We'll now use Jenkins to define and run a pipeline that will  build and and deploy the nodejs app to Kubernetes cluster.
+ To create a pipeline, follow the steps:
+ 1. Open the Jenkins Dashboard and Click 'New Item'.
+ 2. Enter an item name, for eg: 'nodejsjenkinspipeline'
+ 3. Select 'Pipeline' then click 'OK'.
+ 4. fill here
+ 5. To build the Pipeline, click 'Build Now'
+ 6. To get the Pipeline output, click 'Console Ouput'
+
+ The Jenkins CI/CD pipeline outputs a ‘SUCCESS’ message. The Jenkins CI/CD pipeline was able to: 
+1. Build the Docker image.
+2. Push the Docker image to Docker Hub.
+3. Pull the Docker image from the Docker Hub repository and create a containerized application.
+4. Deploy the containerized application to the Kubernetes cluster. 
+
+## Accessing the Deployed Containerized Application
+We will use the Kubernetes Service to access the node.js application container from outside the Kubernetes cluster. To get the Kubernetes Service, run this command:
+```shell
+kubectl get service
+```
+We will then run the following command to get the URL:
+fill here
+portforward fill here
+
+Copy the URL and paste it into your browser to access the deployed containerized application (node.js application)
 
