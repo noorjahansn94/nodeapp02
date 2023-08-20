@@ -15,9 +15,8 @@
 This guide will take you through the steps necessary to build and deploy an application in Kubernetes using Jenkins
 
 ## Prerequisites
-1. Kubernetes cluster (K3D used in this project)
-2. Helm installed in your machine
-3. Docker desktop installed in your machine
+1. Kubernetes (K3D used in this project)
+2. Docker desktop installed and running in your machine
 
 ## Create a Kubernetes Cluster
     
@@ -39,19 +38,19 @@ CI/CD pipleline.
     ```shell
     choco install kubernetes-helm
     ```
-
-
-2. Pull official helm repository into a folder.
-
-    ```shell
-    helm pull jenkins/jenkins
-    ```
-3. jenkins-4.5.0.tgz will be downloaded and extract this downloaded file to get Jenkins folder in which it   contains the helm chart
-4. Ensure Helm is properly installed by running the following command. 
+2. Ensure Helm is properly installed by running the following command. 
 
     ```shell
     helm version
     ```
+
+3. Pull official helm repository into a folder.
+
+    ```shell
+    helm pull jenkins/jenkins
+    ```
+4. Extract the downloaded `jenkins-4.5.0.tgz` file to get the helm chart folder named `Jenkins`. 
+
 ## Modify the helm chart
 
 Inorder to run the docker commands and kubectl commands, we need to modify the helm chart to include additional two containers: One container with docker:dind image to run docker commands and another with bitnami/kubectl image to run kubectl commands. Modify the helm chart values by adding the following to values.yaml file:
