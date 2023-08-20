@@ -23,6 +23,14 @@ A concise description of what this Jenkins project is about, its purpose, and it
 2. Helm installed in your machine
 3. Docker desktop installed in your machine
 
+## Create a Kubernetes Cluster
+    
+1. Provision the cluster with `K3D`
+k3d is a lightweight wrapper to run k3s (Rancher Lab’s minimal Kubernetes distribution) in docker. Use K3D to create and manage the Kubernetes cluster, named `k3d-one-node-cluster`
+```shell
+k3d cluster create one-node-cluster --agents 1
+```
+
 ## Install Helm
 
 In this lab, we will use Helm to install Jenkins .  Helm
@@ -107,3 +115,19 @@ Inorder to run the docker commands and kubectl commands, we need to modify the h
   resources: ["services"]
   verbs: ["create", "get", "list", "update", "delete"]
   ```  
+
+3. Install the helm chart from the directory:
+```shell
+helm install my-release ./jenkins
+```
+4. The following credentials are used to login to Jenkins:
+ username: admin
+ To get password, run the following command:
+ ```shell
+ kubectl exec --namespace default -it svc/my-jenkins-eg -c jenkins -- /bin/cat /run/secrets/additional/chart-admin-password && echo
+ ```
+5. run the following command in the same shell
+```shell
+kubectl --namespace default port-forward svc/my-release-jenkins 8080:8080
+```
+6. Open http://127.0.0.1:8080 in the browser, give the credentials and login to jenkins UI.
