@@ -113,7 +113,7 @@ Inorder to run the docker commands and kubectl commands, we need to modify the h
   verbs: ["create", "get", "list", "update", "delete", "patch"]
 - apiGroups: [""]
   resources: ["services"]
-  verbs: ["create", "get", "list", "update", "delete"]
+  verbs: ["create", "get", "list", "update", "delete","patch"]
   ```  
 
 3. Install the helm chart from the directory:
@@ -150,9 +150,14 @@ We will add the  Docker Hub credentials to the Jenkins Credentials manager using
  1. Open the Jenkins Dashboard and Click 'New Item'.
  2. Enter an item name, for eg: 'nodejsjenkinspipeline'
  3. Select 'Pipeline' then click 'OK'.
- 4. fill here
- 5. To build the Pipeline, click 'Build Now'
- 6. To get the Pipeline output, click 'Console Ouput'
+ 4. In general configuration, under pipeline section, open the drop down from definition, select Pipeline script from SCM.
+ 5. For SCM, select Git from drop down
+ 6. Give the repository URL as `https://github.com/noorjahansn94/nodeapp02.git`
+ 7. Enter `*/main` for branch specifier
+ 8. Enter `Jenkinsfile` in the Script Path
+ 9. Click on Save
+ 10. To build the Pipeline, click 'Build Now'
+ 11. To get the Pipeline output, click 'Console Ouput'
 
  The Jenkins CI/CD pipeline outputs a ‘SUCCESS’ message. The Jenkins CI/CD pipeline was able to: 
 1. Build the Docker image.
