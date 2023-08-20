@@ -81,7 +81,7 @@ Inorder to run the docker commands and kubectl commands, we need to modify the h
           memory: 2Gi
   ```
 ## Create a Service Account with permissions
-In order to access the kubernetes cluster from the jenkins pod, a service account is needed. Modify the helm chart values.yaml by adding the following in the serviceAccountAgent section:
+1. In order to access the kubernetes cluster from the jenkins pod, a service account is needed. Modify the helm chart values.yaml by adding the following in the serviceAccountAgent section:
   ```shell
   serviceAccountAgent:
   create: true
@@ -90,4 +90,20 @@ In order to access the kubernetes cluster from the jenkins pod, a service accoun
   extraLabels: {}
   imagePullSecretName:
   ```
+2. Permissions to this service account must be added to rbac.yaml file in the helm chart. Only then we will be able to apply the deployments and services inside the cluster. Add the following in the rules section of jenkins\templates\rbac.yaml file:
 
+  ```shell
+  rules:
+- apiGroups: [""]
+  resources: ["pods", "pods/exec", "pods/log", "persistentvolumeclaims", "events"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: [""]
+  resources: ["pods", "pods/exec", "persistentvolumeclaims"]
+  verbs: ["create", "delete", "deletecollection", "patch", "update"]
+- apiGroups: ["apps"]
+  resources: ["deployments"]
+  verbs: ["create", "get", "list", "update", "delete", "patch"]
+- apiGroups: [""]
+  resources: ["services"]
+  verbs: ["create", "get", "list", "update", "delete"]
+  ```  
