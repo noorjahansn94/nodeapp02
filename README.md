@@ -130,4 +130,4 @@ helm install my-release ./jenkins
 ```shell
 kubectl --namespace default port-forward svc/my-release-jenkins 8080:8080
 ```
-6. Open http://127.0.0.1:8080 in the browser, give the credentials and login to jenkins UI.
+6. Open http://127.0.0.1:8080 in the browser, give the credentials from step 4 and login to jenkins UI.
