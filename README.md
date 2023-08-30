@@ -5,10 +5,14 @@
 - [Overview](#overview)
 - [Prerequisites](#prerequisites)
 - [Create a Kubernetes Cluster](#Create-a-Kubernetes-Cluster)
-<!-- - [Usage](#usage)
-- [Configure and Install Jenkins](#Configure-and-Install-Jenkins)
-- [Contributing](#contributing)
-- [License](#license) -->
+- [Install Helm](#Install-Helm)
+- [Modify the helm chart](#Modify-the-helm-chart)
+- [Create Service Account](#Create-a-Service-Account-with-permissions)
+- [sample app deployment to kubernetes](#sample-app-deployment-to-kubernetes)
+- [Jenkins Configuration](#Jenkins-Configuration)
+- [Access the application](#Access-the-application)
+
+
 
 ## Overview
 
@@ -129,8 +133,9 @@ kubectl --namespace default port-forward svc/my-release-jenkins 8080:8080
 ```
 6. Open http://127.0.0.1:8080 in the browser, give the credentials from step 4 and login to jenkins UI.
 
-## The sample app deployment to kubernetes
+## Sample app deployment to kubernetes
 We'll use a very simple nodejs application for this demo. The dockerfile for the app is located in this repo that can create an image out of the nodejs app. The Jenkinsfile which is written to build the image and deploy it to kubernetes is also placed in the same repo. A Kubernetes Service Deployment YAML file and service YAML file is created and placed in the repo.  We will use the Kubernetes Service to access the node.js application container from outside the Kubernetes cluster. 
+
 ## Jenkins Configuration
  
 1. Install docker pipeline plugin
@@ -162,7 +167,7 @@ We will add the  Docker Hub credentials to the Jenkins Credentials manager using
 3. Pull the Docker image from the Docker Hub repository and create a containerized application.
 4. Deploy the containerized application to the Kubernetes cluster. 
 
-## Accessing the Deployed Containerized Application
+## Access the application
 We will use the Kubernetes Service to access the node.js application container from outside the Kubernetes cluster.
 1. To get the Kubernetes Service, run this command:
 ```shell
