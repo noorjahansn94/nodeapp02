@@ -116,6 +116,13 @@ Inorder to run the docker commands and kubectl commands, we need to modify the h
   resources: ["services"]
   verbs: ["create", "get", "list", "update", "delete","patch"]
   ```  
+Add the following to 'subjects' section of the same rbac.yaml file:
+  ```shell
+  subjects:
+- kind: ServiceAccount
+  name: testsc
+  namespace: {{ template "jenkins.agent.namespace" . }}
+  ```
 
 3. Go to the `helm-release` directory. Install the helm chart by running the following command where `my-release` is the name for helm release and `./jenkins` is the path to the Helm chart directory that we're installing:
 ```shell
