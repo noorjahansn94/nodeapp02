@@ -1,11 +1,11 @@
 # Deploying application in Kubernetes using Jenkins
 
-<!-- ## Table of Contents
+## Table of Contents
 
 - [Overview](#overview)
 - [Prerequisites](#prerequisites)
-- [Getting Started](#getting-started)
-- [Usage](#usage)
+- [Create a Kubernetes Cluster](#Create-a-Kubernetes-Cluster)
+<!-- - [Usage](#usage)
 - [Configure and Install Jenkins](#Configure-and-Install-Jenkins)
 - [Contributing](#contributing)
 - [License](#license) -->
