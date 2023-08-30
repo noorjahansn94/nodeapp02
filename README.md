@@ -8,7 +8,7 @@
 - [Install Helm](#Install-Helm)
 - [Modify the helm chart](#Modify-the-helm-chart)
 - [Create Service Account](#Create-a-Service-Account-with-permissions)
-- [sample app deployment to kubernetes](#sample-app-deployment-to-kubernetes)
+- [App deployment to kubernetes](#app-deployment-to-kubernetes)
 - [Jenkins Configuration](#Jenkins-Configuration)
 - [Access the application](#Access-the-application)
 
@@ -133,7 +133,7 @@ kubectl --namespace default port-forward svc/my-release-jenkins 8080:8080
 ```
 6. Open http://127.0.0.1:8080 in the browser, give the credentials from step 4 and login to jenkins UI.
 
-## Sample app deployment to kubernetes
+## App deployment to kubernetes
 We'll use a very simple nodejs application for this demo. The dockerfile for the app is located in this repo that can create an image out of the nodejs app. The Jenkinsfile which is written to build the image and deploy it to kubernetes is also placed in the same repo. A Kubernetes Service Deployment YAML file and service YAML file is created and placed in the repo.  We will use the Kubernetes Service to access the node.js application container from outside the Kubernetes cluster. 
 
 ## Jenkins Configuration
