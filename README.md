@@ -47,12 +47,17 @@ CI/CD pipleline.
  ```shell
     mkdir helm-release
  ```
-3. Pull official helm repository into the `helm-release` directory.
+4. Once Helm is set up properly, add the repository as follows:
+```shell
+  helm repo add jenkins https://charts.jenkins.io
+  helm repo update
+```
+5. Pull official helm repository into the `helm-release` directory.
 
-    ```shell
+```shell
     helm pull jenkins/jenkins
-    ```
-4. Extract the downloaded `jenkins-4.5.0.tgz` file to get the helm chart folder named `Jenkins`. 
+```
+6. Extract the downloaded `jenkins-4.5.0.tgz` file to get the helm chart folder named `Jenkins`. 
 
 ## Modify the helm chart
 
