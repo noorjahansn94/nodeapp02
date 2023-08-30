@@ -116,7 +116,7 @@ Inorder to run the docker commands and kubectl commands, we need to modify the h
   resources: ["services"]
   verbs: ["create", "get", "list", "update", "delete","patch"]
   ```  
-Add the following to 'subjects' section of the same rbac.yaml file:
+Add the following to 'subjects' under 'RoleBinding' section of the same rbac.yaml file:
   ```shell
   subjects:
 - kind: ServiceAccount
