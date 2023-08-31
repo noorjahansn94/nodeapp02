@@ -22,7 +22,7 @@ This guide will take you through the steps necessary to build and deploy an appl
 1. Kubernetes (K3D used in this project)
 2. Docker desktop installed and running in your machine
 
-
+![](jenkins.png)
 ## Create a Kubernetes Cluster
     
 1. Provision the cluster with `K3D`
