@@ -58,7 +58,7 @@ CI/CD pipleline.
   helm repo add jenkins https://charts.jenkins.io
   helm repo update
 ```
-5. Pull official helm repository into the `helm-release` directory.
+5. Pull official helm chart into the `helm-release` directory.
 
 ```shell
     helm pull jenkins/jenkins
