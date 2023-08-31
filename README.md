@@ -4,6 +4,7 @@
 
 - [Overview](#overview)
 - [Prerequisites](#prerequisites)
+- [Basic Architecture](#Basic-Architecture)
 - [Create a Kubernetes Cluster](#Create-a-Kubernetes-Cluster)
 - [Install Helm](#Install-Helm)
 - [Modify the helm chart](#Modify-the-helm-chart)
@@ -21,7 +22,7 @@ This guide will take you through the steps necessary to build and deploy an appl
 ## Prerequisites
 1. Kubernetes (K3D used in this project)
 2. Docker desktop installed and running in your machine
-
+## Basic Architecture
 ![](jenkins.png)
 ## Create a Kubernetes Cluster
     
